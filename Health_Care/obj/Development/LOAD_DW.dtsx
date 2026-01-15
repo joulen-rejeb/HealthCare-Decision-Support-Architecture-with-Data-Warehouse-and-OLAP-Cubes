@@ -1,0 +1,1293 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="11/18/2025 10:23:32 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="SANA"
+  DTS:CreatorName="SANA\eree"
+  DTS:DTSID="{5886A108-7CEE-4B4F-B1A7-535A93C992FD}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="16.0.5685.2"
+  DTS:LocaleID="8192"
+  DTS:ObjectName="Package1"
+  DTS:PackageType="5"
+  DTS:VersionBuild="32"
+  DTS:VersionGUID="{EF785693-0E85-4F88-B41F-8CBF536B613F}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[SANA\SQLEXPRESS01.DW_HealthCare]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{CB4CA5D0-3BEA-4B4F-A5A7-843D3DA2B2AA}"
+      DTS:ObjectName="SANA\SQLEXPRESS01.DW_HealthCare">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=SANA\SQLEXPRESS01;Initial Catalog=DW_HealthCare;Provider=SQLOLEDB.1;Integrated Security=SSPI;Application Name=SSIS-Package1-{CB4CA5D0-3BEA-4B4F-A5A7-843D3DA2B2AA}SANA\SQLEXPRESS01.DW_HealthCare;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[SANA\SQLEXPRESS01.HealthCare_SA;]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{DED5B2AB-56C3-4079-A5B1-5E6452B0D90C}"
+      DTS:ObjectName="SANA\SQLEXPRESS01.HealthCare_SA;">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=SANA\SQLEXPRESS01;Initial Catalog=&quot;HealthCare_SA;&quot;;Provider=SQLOLEDB.1;Integrated Security=SSPI;Application Name=&quot;SSIS-Package1-{DED5B2AB-56C3-4079-A5B1-5E6452B0D90C}SANA\SQLEXPRESS01.HealthCare_SA;&quot;;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Alim_DIM_PATIENT"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Tâche de flux de données"
+      DTS:DTSID="{E5484EF3-3EC5-4417-A7C0-38218086F554}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Alim_DIM_PATIENT"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Alim_DIM_PATIENT\Colonne dérivée"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Colonne dérivée;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Tous droits réservés; http://www.microsoft.com/sql/support;0"
+              description="Crée de nouvelles valeurs de colonne en appliquant des expressions aux colonnes d'entrée de transformation. Créez de nouvelles colonnes ou remplacez celles qui existent déjà. Par exemple, concaténez les valeurs de la colonne 'prénom' et de la colonne 'nom' pour créer une colonne 'nom complet'."
+              name="Colonne dérivée"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Alim_DIM_PATIENT\Colonne dérivée.Inputs[Entrée de colonne dérivée]"
+                  description="Entrée de la transformation de colonnes dérivées"
+                  name="Entrée de colonne dérivée">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Alim_DIM_PATIENT\Colonne dérivée.Inputs[Entrée de colonne dérivée].Columns[MaritalStatus]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="MaritalStatus"
+                      errorOrTruncationOperation="Calcul"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Alim_DIM_PATIENT\sa.Outputs[Sortie de source OLE DB].Columns[MaritalStatus]"
+                      truncationRowDisposition="FailComponent"
+                      usageType="readWrite">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Expression de colonne dérivée"
+                          name="Expression">[ISNULL](#{Package\Alim_DIM_PATIENT\sa.Outputs[Sortie de source OLE DB].Columns[MaritalStatus]}) || [TRIM](#{Package\Alim_DIM_PATIENT\sa.Outputs[Sortie de source OLE DB].Columns[MaritalStatus]}) == "" ? "AUCUN" : #{Package\Alim_DIM_PATIENT\sa.Outputs[Sortie de source OLE DB].Columns[MaritalStatus]}</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Expression claire de colonne dérivée"
+                          expressionType="Notify"
+                          name="FriendlyExpression">ISNULL(MaritalStatus) || TRIM(MaritalStatus) == "" ? "AUCUN" : MaritalStatus</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Alim_DIM_PATIENT\Colonne dérivée.Outputs[Sortie de colonne dérivée]"
+                  description="Sortie par défaut de la transformation de colonnes dérivées"
+                  exclusionGroup="1"
+                  name="Sortie de colonne dérivée"
+                  synchronousInputId="Package\Alim_DIM_PATIENT\Colonne dérivée.Inputs[Entrée de colonne dérivée]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Alim_DIM_PATIENT\Colonne dérivée.Outputs[Sortie d'erreur de colonne dérivée]"
+                  description="Sortie d'erreur de la transformation de colonnes dérivées"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Sortie d'erreur de colonne dérivée"
+                  synchronousInputId="Package\Alim_DIM_PATIENT\Colonne dérivée.Inputs[Entrée de colonne dérivée]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Alim_DIM_PATIENT\Colonne dérivée.Outputs[Sortie d'erreur de colonne dérivée].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Alim_DIM_PATIENT\Colonne dérivée.Outputs[Sortie d'erreur de colonne dérivée].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Alim_DIM_PATIENT\Colonne dérivée.Outputs[Sortie d'erreur de colonne dérivée].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Alim_DIM_PATIENT\Colonne dérivée.Outputs[Sortie d'erreur de colonne dérivée].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Alim_DIM_PATIENT\Commande OLE DB"
+              componentClassID="Microsoft.OLEDBCommand"
+              contactInfo="Commande OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Tous droits réservés; http://www.microsoft.com/sql/support;2"
+              description="Exécute une instruction SQL pour chaque ligne d'un flux de données. Par exemple, appelez une procédure stockée 'nouvelle configuration d'employé' pour chaque ligne de la table 'nouveaux employés'. Remarque : l'exécution d'une instruction SQL pour chaque ligne d'un flux de données volumineux peut prendre beaucoup de temps."
+              name="Commande OLE DB"
+              usesDispositions="true"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Nombre de secondes avant l'expiration d'une commande.  Une valeur égale à 0 indique un délai d'expiration infini."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Commande SQL à exécuter."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">UPDATE [dbo].[DimPatient]
+   SET 
+      [Gender] = ?
+      ,[DateOfBirth] = ?
+      ,[Ethnicity] = ?
+      ,[MaritalStatus] = ?
+ WHERE [Patient_ID] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie la page de codes de la colonne à utiliser lorsque les informations de page de codes ne sont pas disponibles à partir de la source de données."
+                  name="DefaultCodePage">1252</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Alim_DIM_PATIENT\Commande OLE DB.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[SANA\SQLEXPRESS01.DW_HealthCare]"
+                  connectionManagerRefId="Package.ConnectionManagers[SANA\SQLEXPRESS01.DW_HealthCare]"
+                  description="Connexion OLE DB en cours d'exécution utilisée pour accéder à la base de données."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Alim_DIM_PATIENT\Commande OLE DB.Inputs[Entrée de commande OLE DB]"
+                  errorOrTruncationOperation="Exécution de commande"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="Entrée de commande OLE DB">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Alim_DIM_PATIENT\Commande OLE DB.Inputs[Entrée de commande OLE DB].Columns[Copy of Patient_ID]"
+                      cachedDataType="i4"
+                      cachedName="Copy of Patient_ID"
+                      externalMetadataColumnId="Package\Alim_DIM_PATIENT\Commande OLE DB.Inputs[Entrée de commande OLE DB].ExternalColumns[Param_4]"
+                      lineageId="Package\Alim_DIM_PATIENT\Conversion de données.Outputs[Sortie de conversion de données].Columns[Copy of Patient_ID]" />
+                    <inputColumn
+                      refId="Package\Alim_DIM_PATIENT\Commande OLE DB.Inputs[Entrée de commande OLE DB].Columns[Gender]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Gender"
+                      externalMetadataColumnId="Package\Alim_DIM_PATIENT\Commande OLE DB.Inputs[Entrée de commande OLE DB].ExternalColumns[Param_0]"
+                      lineageId="Package\Alim_DIM_PATIENT\sa.Outputs[Sortie de source OLE DB].Columns[Gender]" />
+                    <inputColumn
+                      refId="Package\Alim_DIM_PATIENT\Commande OLE DB.Inputs[Entrée de commande OLE DB].Columns[DateOfBirth]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="DateOfBirth"
+                      externalMetadataColumnId="Package\Alim_DIM_PATIENT\Commande OLE DB.Inputs[Entrée de commande OLE DB].ExternalColumns[Param_1]"
+                      lineageId="Package\Alim_DIM_PATIENT\sa.Outputs[Sortie de source OLE DB].Columns[DateOfBirth]" />
+                    <inputColumn
+                      refId="Package\Alim_DIM_PATIENT\Commande OLE DB.Inputs[Entrée de commande OLE DB].Columns[Ethnicity]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="150"
+                      cachedName="Ethnicity"
+                      externalMetadataColumnId="Package\Alim_DIM_PATIENT\Commande OLE DB.Inputs[Entrée de commande OLE DB].ExternalColumns[Param_2]"
+                      lineageId="Package\Alim_DIM_PATIENT\sa.Outputs[Sortie de source OLE DB].Columns[Ethnicity]" />
+                    <inputColumn
+                      refId="Package\Alim_DIM_PATIENT\Commande OLE DB.Inputs[Entrée de commande OLE DB].Columns[MaritalStatus]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="MaritalStatus"
+                      externalMetadataColumnId="Package\Alim_DIM_PATIENT\Commande OLE DB.Inputs[Entrée de commande OLE DB].ExternalColumns[Param_3]"
+                      lineageId="Package\Alim_DIM_PATIENT\sa.Outputs[Sortie de source OLE DB].Columns[MaritalStatus]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Alim_DIM_PATIENT\Commande OLE DB.Inputs[Entrée de commande OLE DB].ExternalColumns[Param_0]"
+                      dataType="wstr"
+                      length="255"
+                      name="Param_0">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Informations de paramètre.  Correspond aux valeurs DBPARAMFLAGSENUM OLE DB."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Alim_DIM_PATIENT\Commande OLE DB.Inputs[Entrée de commande OLE DB].ExternalColumns[Param_1]"
+                      dataType="wstr"
+                      length="255"
+                      name="Param_1">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Informations de paramètre.  Correspond aux valeurs DBPARAMFLAGSENUM OLE DB."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Alim_DIM_PATIENT\Commande OLE DB.Inputs[Entrée de commande OLE DB].ExternalColumns[Param_2]"
+                      codePage="1252"
+                      dataType="str"
+                      length="150"
+                      name="Param_2">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Informations de paramètre.  Correspond aux valeurs DBPARAMFLAGSENUM OLE DB."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Alim_DIM_PATIENT\Commande OLE DB.Inputs[Entrée de commande OLE DB].ExternalColumns[Param_3]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Param_3">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Informations de paramètre.  Correspond aux valeurs DBPARAMFLAGSENUM OLE DB."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Alim_DIM_PATIENT\Commande OLE DB.Inputs[Entrée de commande OLE DB].ExternalColumns[Param_4]"
+                      dataType="i4"
+                      name="Param_4">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Informations de paramètre.  Correspond aux valeurs DBPARAMFLAGSENUM OLE DB."
+                          name="DBParamInfoFlags">17</property>
+                      </properties>
+                    </externalMetadataColumn>
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Alim_DIM_PATIENT\Commande OLE DB.Outputs[Sortie de commande OLE DB]"
+                  exclusionGroup="1"
+                  name="Sortie de commande OLE DB"
+                  synchronousInputId="Package\Alim_DIM_PATIENT\Commande OLE DB.Inputs[Entrée de commande OLE DB]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Alim_DIM_PATIENT\Commande OLE DB.Outputs[Sortie d'erreur de commande OLE DB]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Sortie d'erreur de commande OLE DB"
+                  synchronousInputId="Package\Alim_DIM_PATIENT\Commande OLE DB.Inputs[Entrée de commande OLE DB]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Alim_DIM_PATIENT\Commande OLE DB.Outputs[Sortie d'erreur de commande OLE DB].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Alim_DIM_PATIENT\Commande OLE DB.Outputs[Sortie d'erreur de commande OLE DB].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Alim_DIM_PATIENT\Commande OLE DB.Outputs[Sortie d'erreur de commande OLE DB].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Alim_DIM_PATIENT\Commande OLE DB.Outputs[Sortie d'erreur de commande OLE DB].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Alim_DIM_PATIENT\Conversion de données"
+              componentClassID="Microsoft.DataConvert"
+              contactInfo="Conversion de données;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Tous droits réservés; http://www.microsoft.com/sql/support;0"
+              description="Conversion de données"
+              name="Conversion de données"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Alim_DIM_PATIENT\Conversion de données.Inputs[Entrée de conversion de données]"
+                  name="Entrée de conversion de données">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Alim_DIM_PATIENT\Conversion de données.Inputs[Entrée de conversion de données].Columns[Patient_ID]"
+                      cachedDataType="r8"
+                      cachedName="Patient_ID"
+                      lineageId="Package\Alim_DIM_PATIENT\sa.Outputs[Sortie de source OLE DB].Columns[Patient_ID]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Alim_DIM_PATIENT\Conversion de données.Outputs[Sortie de conversion de données]"
+                  exclusionGroup="1"
+                  name="Sortie de conversion de données"
+                  synchronousInputId="Package\Alim_DIM_PATIENT\Conversion de données.Inputs[Entrée de conversion de données]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Alim_DIM_PATIENT\Conversion de données.Outputs[Sortie de conversion de données].Columns[Copy of Patient_ID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Alim_DIM_PATIENT\Conversion de données.Outputs[Sortie de conversion de données].Columns[Copy of Patient_ID]"
+                      name="Copy of Patient_ID"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Spécifie la colonne d'entrée utilisée comme source de données pour la conversion."
+                          name="SourceInputColumnLineageID">#{Package\Alim_DIM_PATIENT\sa.Outputs[Sortie de source OLE DB].Columns[Patient_ID]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indique si la colonne utilise les routines d'analyse les plus rapides, avec des paramètres régionaux neutres."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Alim_DIM_PATIENT\Conversion de données.Outputs[Sortie d'erreur de conversion de données]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Sortie d'erreur de conversion de données"
+                  synchronousInputId="Package\Alim_DIM_PATIENT\Conversion de données.Inputs[Entrée de conversion de données]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Alim_DIM_PATIENT\Conversion de données.Outputs[Sortie d'erreur de conversion de données].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Alim_DIM_PATIENT\Conversion de données.Outputs[Sortie d'erreur de conversion de données].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Alim_DIM_PATIENT\Conversion de données.Outputs[Sortie d'erreur de conversion de données].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Alim_DIM_PATIENT\Conversion de données.Outputs[Sortie d'erreur de conversion de données].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Alim_DIM_PATIENT\Destination OLE DB"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="Destination OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Tous droits réservés; http://www.microsoft.com/sql/support;4"
+              description="Destination OLE DB"
+              name="Destination OLE DB"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Nombre de secondes avant l'expiration d'une commande.  Une valeur égale à 0 indique un délai d'expiration infini."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Spécifie le nom de l'objet de base de données utilisé pour ouvrir un ensemble de lignes."
+                  name="OpenRowset">[dbo].[DimPatient]</property>
+                <property
+                  dataType="System.String"
+                  description="Spécifie la variable contenant le nom de l'objet de base de données utilisé pour ouvrir un ensemble de lignes."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="Commande SQL à exécuter."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie la page de codes de la colonne à utiliser lorsque les informations de page de codes ne sont pas disponibles à partir de la source de données."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Force l'utilisation de la valeur de propriété DefaultCodePage lors de la description des données caractères."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie le mode utilisé pour accéder à la base de données."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indique si les valeurs fournies pour les colonnes d'identité seront copiées à la destination. Si la valeur est définie à False, les valeurs des colonnes d'identité seront générées automatiquement à la destination. Ne s'applique que si le chargement rapide est activé."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indique si les colonnes contenant la valeur NULL auront cette valeur NULL copiée à la destination. Si la valeur est définie à False, les colonnes contenant la valeur NULL auront leurs valeurs par défaut insérées à la destination. Ne s'applique que si le chargement rapide est activé."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Spécifie les options à utiliser avec le chargement rapide.  Ne s'applique que si le chargement rapide est activé."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie quand les validations sont émises pendant l'insertion des données.  Une valeur égale à 0 spécifie qu'une validation sera émise à la fin de l'insertion des données.  Ne s'applique que si le chargement rapide est activé."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Alim_DIM_PATIENT\Destination OLE DB.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[SANA\SQLEXPRESS01.DW_HealthCare]"
+                  connectionManagerRefId="Package.ConnectionManagers[SANA\SQLEXPRESS01.DW_HealthCare]"
+                  description="Connexion OLE DB en cours d'exécution utilisée pour accéder à la base de données."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Alim_DIM_PATIENT\Destination OLE DB.Inputs[Entrée de destination OLE DB]"
+                  errorOrTruncationOperation="Insérer"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="Entrée de destination OLE DB">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Alim_DIM_PATIENT\Destination OLE DB.Inputs[Entrée de destination OLE DB].Columns[Copy of Patient_ID]"
+                      cachedDataType="i4"
+                      cachedName="Copy of Patient_ID"
+                      externalMetadataColumnId="Package\Alim_DIM_PATIENT\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[Patient_ID]"
+                      lineageId="Package\Alim_DIM_PATIENT\Conversion de données.Outputs[Sortie de conversion de données].Columns[Copy of Patient_ID]" />
+                    <inputColumn
+                      refId="Package\Alim_DIM_PATIENT\Destination OLE DB.Inputs[Entrée de destination OLE DB].Columns[MaritalStatus]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="MaritalStatus"
+                      externalMetadataColumnId="Package\Alim_DIM_PATIENT\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[MaritalStatus]"
+                      lineageId="Package\Alim_DIM_PATIENT\sa.Outputs[Sortie de source OLE DB].Columns[MaritalStatus]" />
+                    <inputColumn
+                      refId="Package\Alim_DIM_PATIENT\Destination OLE DB.Inputs[Entrée de destination OLE DB].Columns[Ethnicity]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="150"
+                      cachedName="Ethnicity"
+                      externalMetadataColumnId="Package\Alim_DIM_PATIENT\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[Ethnicity]"
+                      lineageId="Package\Alim_DIM_PATIENT\sa.Outputs[Sortie de source OLE DB].Columns[Ethnicity]" />
+                    <inputColumn
+                      refId="Package\Alim_DIM_PATIENT\Destination OLE DB.Inputs[Entrée de destination OLE DB].Columns[DateOfBirth]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="DateOfBirth"
+                      externalMetadataColumnId="Package\Alim_DIM_PATIENT\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[DateOfBirth]"
+                      lineageId="Package\Alim_DIM_PATIENT\sa.Outputs[Sortie de source OLE DB].Columns[DateOfBirth]" />
+                    <inputColumn
+                      refId="Package\Alim_DIM_PATIENT\Destination OLE DB.Inputs[Entrée de destination OLE DB].Columns[Gender]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Gender"
+                      externalMetadataColumnId="Package\Alim_DIM_PATIENT\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[Gender]"
+                      lineageId="Package\Alim_DIM_PATIENT\sa.Outputs[Sortie de source OLE DB].Columns[Gender]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Alim_DIM_PATIENT\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[Patient_ID]"
+                      dataType="i4"
+                      name="Patient_ID" />
+                    <externalMetadataColumn
+                      refId="Package\Alim_DIM_PATIENT\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[Gender]"
+                      dataType="wstr"
+                      length="255"
+                      name="Gender" />
+                    <externalMetadataColumn
+                      refId="Package\Alim_DIM_PATIENT\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[DateOfBirth]"
+                      dataType="wstr"
+                      length="255"
+                      name="DateOfBirth" />
+                    <externalMetadataColumn
+                      refId="Package\Alim_DIM_PATIENT\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[Ethnicity]"
+                      codePage="1252"
+                      dataType="str"
+                      length="150"
+                      name="Ethnicity" />
+                    <externalMetadataColumn
+                      refId="Package\Alim_DIM_PATIENT\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[MaritalStatus]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="MaritalStatus" />
+                    <externalMetadataColumn
+                      refId="Package\Alim_DIM_PATIENT\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[Patient_PK]"
+                      dataType="i4"
+                      name="Patient_PK" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Alim_DIM_PATIENT\Destination OLE DB.Outputs[Sortie d'erreur de destination OLE DB]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Sortie d'erreur de destination OLE DB"
+                  synchronousInputId="Package\Alim_DIM_PATIENT\Destination OLE DB.Inputs[Entrée de destination OLE DB]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Alim_DIM_PATIENT\Destination OLE DB.Outputs[Sortie d'erreur de destination OLE DB].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Alim_DIM_PATIENT\Destination OLE DB.Outputs[Sortie d'erreur de destination OLE DB].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Alim_DIM_PATIENT\Destination OLE DB.Outputs[Sortie d'erreur de destination OLE DB].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Alim_DIM_PATIENT\Destination OLE DB.Outputs[Sortie d'erreur de destination OLE DB].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Alim_DIM_PATIENT\Recherche"
+              componentClassID="Microsoft.Lookup"
+              contactInfo="Recherche;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Tous droits réservés; http://www.microsoft.com/sql/support;6"
+              description="Joint des colonnes supplémentaires au flux de données en recherchant des valeurs dans une table. Par exemple, joignez la colonne 'id employé' à la table des employés afin d'obtenir la 'date d'embauche' et le 'nom de l'employé'. Nous recommandons cette transformation lorsque la table de recherche peut être stockée en mémoire."
+              name="Recherche"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Spécifie l'instruction SQL qui génère la table de correspondance."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from [dbo].[DimPatient]</property>
+                <property
+                  dataType="System.String"
+                  description="Spécifie une instruction SQL qui utilise des paramètres pour générer la table de correspondance."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (select * from [dbo].[DimPatient]) [refTable]
+where [refTable].[Patient_ID] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie le type de connexion utilisé pour accéder au dataset de référence."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie le type de cache de la table de correspondance."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie comment la transformation de recherche gère les lignes sans entrées correspondantes dans le jeu de données de référence."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie le pourcentage du cache alloué aux lignes sans entrées correspondantes dans le dataset de référence."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Utilisation maximale de la mémoire pour le cache de référence sur une plateforme 32 bits."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Utilisation maximale de la mémoire pour le cache de référence sur une plateforme 64 bits."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indique si les métadonnées sont à référencer en format XML."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="Patient_PK" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Patient_ID" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Gender" dataType="DT_WSTR" length="255" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="DateOfBirth" dataType="DT_WSTR" length="255" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Ethnicity" dataType="DT_STR" length="150" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="MaritalStatus" dataType="DT_STR" length="50" precision="0" scale="0" codePage="1252"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Spécifie la liste d'identificateurs de traçabilité se mappant aux paramètres utilisés dans la propriété SQLCommand par l'instruction SQL. Les entrées dans la liste sont séparées par des points-virgules."
+                  name="ParameterMap">#{Package\Alim_DIM_PATIENT\Conversion de données.Outputs[Sortie de conversion de données].Columns[Copy of Patient_ID]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie la page de codes de la colonne à utiliser lorsque les informations de page de codes ne sont pas disponibles à partir de la source de données."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Détermine si les clés dupliquées dans les données de référence doivent être traitées en tant qu'erreurs lorsque le mode Cache complet est utilisé."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Alim_DIM_PATIENT\Recherche.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[SANA\SQLEXPRESS01.DW_HealthCare]"
+                  connectionManagerRefId="Package.ConnectionManagers[SANA\SQLEXPRESS01.DW_HealthCare]"
+                  description="Gestionnaire de connexions utilisé pour accéder aux données de correspondance."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Alim_DIM_PATIENT\Recherche.Inputs[Entrée de recherche]"
+                  name="Entrée de recherche">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Alim_DIM_PATIENT\Recherche.Inputs[Entrée de recherche].Columns[Copy of Patient_ID]"
+                      cachedDataType="i4"
+                      cachedName="Copy of Patient_ID"
+                      lineageId="Package\Alim_DIM_PATIENT\Conversion de données.Outputs[Sortie de conversion de données].Columns[Copy of Patient_ID]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Spécifie la colonne de la table de référence sur laquelle une colonne se lie."
+                          name="JoinToReferenceColumn">Patient_ID</property>
+                        <property
+                          dataType="System.Null"
+                          description="Spécifie la colonne de la table de référence à partir de laquelle une colonne est copiée."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Alim_DIM_PATIENT\Recherche.Outputs[Sortie de recherche avec correspondance]"
+                  errorOrTruncationOperation="Recherche"
+                  exclusionGroup="1"
+                  name="Sortie de recherche avec correspondance"
+                  synchronousInputId="Package\Alim_DIM_PATIENT\Recherche.Inputs[Entrée de recherche]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Alim_DIM_PATIENT\Recherche.Outputs[Sortie de recherche avec correspondance].Columns[Patient_PK]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Copie de colonnes"
+                      lineageId="Package\Alim_DIM_PATIENT\Recherche.Outputs[Sortie de recherche avec correspondance].Columns[Patient_PK]"
+                      name="Patient_PK"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Spécifie la colonne de la table de référence à partir de laquelle une colonne est copiée."
+                          name="CopyFromReferenceColumn">Patient_PK</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Alim_DIM_PATIENT\Recherche.Outputs[Sortie de recherche avec correspondance].Columns[Patient_ID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Copie de colonnes"
+                      lineageId="Package\Alim_DIM_PATIENT\Recherche.Outputs[Sortie de recherche avec correspondance].Columns[Patient_ID]"
+                      name="Patient_ID"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Spécifie la colonne de la table de référence à partir de laquelle une colonne est copiée."
+                          name="CopyFromReferenceColumn">Patient_ID</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Alim_DIM_PATIENT\Recherche.Outputs[Sortie de recherche avec correspondance].Columns[Gender]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Copie de colonnes"
+                      length="255"
+                      lineageId="Package\Alim_DIM_PATIENT\Recherche.Outputs[Sortie de recherche avec correspondance].Columns[Gender]"
+                      name="Gender"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Spécifie la colonne de la table de référence à partir de laquelle une colonne est copiée."
+                          name="CopyFromReferenceColumn">Gender</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Alim_DIM_PATIENT\Recherche.Outputs[Sortie de recherche avec correspondance].Columns[DateOfBirth]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Copie de colonnes"
+                      length="255"
+                      lineageId="Package\Alim_DIM_PATIENT\Recherche.Outputs[Sortie de recherche avec correspondance].Columns[DateOfBirth]"
+                      name="DateOfBirth"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Spécifie la colonne de la table de référence à partir de laquelle une colonne est copiée."
+                          name="CopyFromReferenceColumn">DateOfBirth</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Alim_DIM_PATIENT\Recherche.Outputs[Sortie de recherche avec correspondance].Columns[Ethnicity]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Copie de colonnes"
+                      length="150"
+                      lineageId="Package\Alim_DIM_PATIENT\Recherche.Outputs[Sortie de recherche avec correspondance].Columns[Ethnicity]"
+                      name="Ethnicity"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Spécifie la colonne de la table de référence à partir de laquelle une colonne est copiée."
+                          name="CopyFromReferenceColumn">Ethnicity</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Alim_DIM_PATIENT\Recherche.Outputs[Sortie de recherche avec correspondance].Columns[MaritalStatus]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Copie de colonnes"
+                      length="50"
+                      lineageId="Package\Alim_DIM_PATIENT\Recherche.Outputs[Sortie de recherche avec correspondance].Columns[MaritalStatus]"
+                      name="MaritalStatus"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Spécifie la colonne de la table de référence à partir de laquelle une colonne est copiée."
+                          name="CopyFromReferenceColumn">MaritalStatus</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Alim_DIM_PATIENT\Recherche.Outputs[Sortie de recherche sans correspondance]"
+                  description="Sortie de recherche gérant les lignes sans entrées correspondantes dans le dataset de référence. Utilisez cette sortie lorsque la propriété NoMatchBehavior a la valeur « Envoyez les lignes sans entrées correspondantes dans la sortie sans correspondance »."
+                  exclusionGroup="1"
+                  name="Sortie de recherche sans correspondance"
+                  synchronousInputId="Package\Alim_DIM_PATIENT\Recherche.Inputs[Entrée de recherche]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Alim_DIM_PATIENT\Recherche.Outputs[Sortie d'erreur de recherche]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Sortie d'erreur de recherche"
+                  synchronousInputId="Package\Alim_DIM_PATIENT\Recherche.Inputs[Entrée de recherche]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Alim_DIM_PATIENT\Recherche.Outputs[Sortie d'erreur de recherche].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Alim_DIM_PATIENT\Recherche.Outputs[Sortie d'erreur de recherche].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Alim_DIM_PATIENT\Recherche.Outputs[Sortie d'erreur de recherche].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Alim_DIM_PATIENT\Recherche.Outputs[Sortie d'erreur de recherche].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Alim_DIM_PATIENT\sa"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="Source OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Tous droits réservés; http://www.microsoft.com/sql/support;7"
+              description="Source OLE DB"
+              name="sa"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Nombre de secondes avant l'expiration d'une commande.  Une valeur égale à 0 indique un délai d'expiration infini."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Spécifie le nom de l'objet de base de données utilisé pour ouvrir un ensemble de lignes."
+                  name="OpenRowset">[dbo].[PATIENTS_SA]</property>
+                <property
+                  dataType="System.String"
+                  description="Spécifie la variable contenant le nom de l'objet de base de données utilisé pour ouvrir un ensemble de lignes."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="Commande SQL à exécuter."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT ADMISSIONS_SA.ethnicity AS Ethnicity, ADMISSIONS_SA.marital_status AS MaritalStatus, PATIENTS_SA.gender AS Gender, PATIENTS_SA.dob AS DateOfBirth, PATIENTS_SA.subject_id AS Patient_ID
+FROM     ADMISSIONS_SA INNER JOIN
+                  PATIENTS_SA ON ADMISSIONS_SA.subject_id = PATIENTS_SA.subject_id</property>
+                <property
+                  dataType="System.String"
+                  description="Variable contenant la commande SQL à exécuter."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie la page de codes de la colonne à utiliser lorsque les informations de page de codes ne sont pas disponibles à partir de la source de données."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Force l'utilisation de la valeur de propriété DefaultCodePage lors de la description des données caractères."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie le mode utilisé pour accéder à la base de données."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="Mappages entre les paramètres de la commande SQL et les variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Alim_DIM_PATIENT\sa.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[SANA\SQLEXPRESS01.HealthCare_SA;]"
+                  connectionManagerRefId="Package.ConnectionManagers[SANA\SQLEXPRESS01.HealthCare_SA;]"
+                  description="Connexion OLE DB en cours d'exécution utilisée pour accéder à la base de données."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Alim_DIM_PATIENT\sa.Outputs[Sortie de source OLE DB]"
+                  name="Sortie de source OLE DB">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Alim_DIM_PATIENT\sa.Outputs[Sortie de source OLE DB].Columns[Ethnicity]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Alim_DIM_PATIENT\sa.Outputs[Sortie de source OLE DB].ExternalColumns[Ethnicity]"
+                      length="150"
+                      lineageId="Package\Alim_DIM_PATIENT\sa.Outputs[Sortie de source OLE DB].Columns[Ethnicity]"
+                      name="Ethnicity"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Alim_DIM_PATIENT\sa.Outputs[Sortie de source OLE DB].Columns[MaritalStatus]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Alim_DIM_PATIENT\sa.Outputs[Sortie de source OLE DB].ExternalColumns[MaritalStatus]"
+                      length="50"
+                      lineageId="Package\Alim_DIM_PATIENT\sa.Outputs[Sortie de source OLE DB].Columns[MaritalStatus]"
+                      name="MaritalStatus"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Alim_DIM_PATIENT\sa.Outputs[Sortie de source OLE DB].Columns[Gender]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Alim_DIM_PATIENT\sa.Outputs[Sortie de source OLE DB].ExternalColumns[Gender]"
+                      length="255"
+                      lineageId="Package\Alim_DIM_PATIENT\sa.Outputs[Sortie de source OLE DB].Columns[Gender]"
+                      name="Gender"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Alim_DIM_PATIENT\sa.Outputs[Sortie de source OLE DB].Columns[DateOfBirth]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Alim_DIM_PATIENT\sa.Outputs[Sortie de source OLE DB].ExternalColumns[DateOfBirth]"
+                      length="255"
+                      lineageId="Package\Alim_DIM_PATIENT\sa.Outputs[Sortie de source OLE DB].Columns[DateOfBirth]"
+                      name="DateOfBirth"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Alim_DIM_PATIENT\sa.Outputs[Sortie de source OLE DB].Columns[Patient_ID]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Alim_DIM_PATIENT\sa.Outputs[Sortie de source OLE DB].ExternalColumns[Patient_ID]"
+                      lineageId="Package\Alim_DIM_PATIENT\sa.Outputs[Sortie de source OLE DB].Columns[Patient_ID]"
+                      name="Patient_ID"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Alim_DIM_PATIENT\sa.Outputs[Sortie de source OLE DB].ExternalColumns[Ethnicity]"
+                      codePage="1252"
+                      dataType="str"
+                      length="150"
+                      name="Ethnicity" />
+                    <externalMetadataColumn
+                      refId="Package\Alim_DIM_PATIENT\sa.Outputs[Sortie de source OLE DB].ExternalColumns[MaritalStatus]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="MaritalStatus" />
+                    <externalMetadataColumn
+                      refId="Package\Alim_DIM_PATIENT\sa.Outputs[Sortie de source OLE DB].ExternalColumns[Gender]"
+                      dataType="wstr"
+                      length="255"
+                      name="Gender" />
+                    <externalMetadataColumn
+                      refId="Package\Alim_DIM_PATIENT\sa.Outputs[Sortie de source OLE DB].ExternalColumns[DateOfBirth]"
+                      dataType="wstr"
+                      length="255"
+                      name="DateOfBirth" />
+                    <externalMetadataColumn
+                      refId="Package\Alim_DIM_PATIENT\sa.Outputs[Sortie de source OLE DB].ExternalColumns[Patient_ID]"
+                      dataType="r8"
+                      name="Patient_ID" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Alim_DIM_PATIENT\sa.Outputs[Sortie d'erreur de source OLE DB]"
+                  isErrorOut="true"
+                  name="Sortie d'erreur de source OLE DB">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Alim_DIM_PATIENT\sa.Outputs[Sortie d'erreur de source OLE DB].Columns[Ethnicity]"
+                      codePage="1252"
+                      dataType="str"
+                      length="150"
+                      lineageId="Package\Alim_DIM_PATIENT\sa.Outputs[Sortie d'erreur de source OLE DB].Columns[Ethnicity]"
+                      name="Ethnicity" />
+                    <outputColumn
+                      refId="Package\Alim_DIM_PATIENT\sa.Outputs[Sortie d'erreur de source OLE DB].Columns[MaritalStatus]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Alim_DIM_PATIENT\sa.Outputs[Sortie d'erreur de source OLE DB].Columns[MaritalStatus]"
+                      name="MaritalStatus" />
+                    <outputColumn
+                      refId="Package\Alim_DIM_PATIENT\sa.Outputs[Sortie d'erreur de source OLE DB].Columns[Gender]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Alim_DIM_PATIENT\sa.Outputs[Sortie d'erreur de source OLE DB].Columns[Gender]"
+                      name="Gender" />
+                    <outputColumn
+                      refId="Package\Alim_DIM_PATIENT\sa.Outputs[Sortie d'erreur de source OLE DB].Columns[DateOfBirth]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Alim_DIM_PATIENT\sa.Outputs[Sortie d'erreur de source OLE DB].Columns[DateOfBirth]"
+                      name="DateOfBirth" />
+                    <outputColumn
+                      refId="Package\Alim_DIM_PATIENT\sa.Outputs[Sortie d'erreur de source OLE DB].Columns[Patient_ID]"
+                      dataType="r8"
+                      lineageId="Package\Alim_DIM_PATIENT\sa.Outputs[Sortie d'erreur de source OLE DB].Columns[Patient_ID]"
+                      name="Patient_ID" />
+                    <outputColumn
+                      refId="Package\Alim_DIM_PATIENT\sa.Outputs[Sortie d'erreur de source OLE DB].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Alim_DIM_PATIENT\sa.Outputs[Sortie d'erreur de source OLE DB].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Alim_DIM_PATIENT\sa.Outputs[Sortie d'erreur de source OLE DB].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Alim_DIM_PATIENT\sa.Outputs[Sortie d'erreur de source OLE DB].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Alim_DIM_PATIENT.Paths[Sortie de colonne dérivée]"
+              endId="Package\Alim_DIM_PATIENT\Recherche.Inputs[Entrée de recherche]"
+              name="Sortie de colonne dérivée"
+              startId="Package\Alim_DIM_PATIENT\Colonne dérivée.Outputs[Sortie de colonne dérivée]" />
+            <path
+              refId="Package\Alim_DIM_PATIENT.Paths[Sortie de conversion de données]"
+              endId="Package\Alim_DIM_PATIENT\Colonne dérivée.Inputs[Entrée de colonne dérivée]"
+              name="Sortie de conversion de données"
+              startId="Package\Alim_DIM_PATIENT\Conversion de données.Outputs[Sortie de conversion de données]" />
+            <path
+              refId="Package\Alim_DIM_PATIENT.Paths[Sortie de recherche avec correspondance]"
+              endId="Package\Alim_DIM_PATIENT\Commande OLE DB.Inputs[Entrée de commande OLE DB]"
+              name="Sortie de recherche avec correspondance"
+              startId="Package\Alim_DIM_PATIENT\Recherche.Outputs[Sortie de recherche avec correspondance]" />
+            <path
+              refId="Package\Alim_DIM_PATIENT.Paths[Sortie de recherche sans correspondance]"
+              endId="Package\Alim_DIM_PATIENT\Destination OLE DB.Inputs[Entrée de destination OLE DB]"
+              name="Sortie de recherche sans correspondance"
+              startId="Package\Alim_DIM_PATIENT\Recherche.Outputs[Sortie de recherche sans correspondance]" />
+            <path
+              refId="Package\Alim_DIM_PATIENT.Paths[Sortie de source OLE DB]"
+              endId="Package\Alim_DIM_PATIENT\Conversion de données.Inputs[Entrée de conversion de données]"
+              name="Sortie de source OLE DB"
+              startId="Package\Alim_DIM_PATIENT\sa.Outputs[Sortie de source OLE DB]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--Cette section CDATA contient des informations sur la disposition du package. Elle comprend des informations telles que les coordonnées (x,y), la largeur et la hauteur.-->
+<!--Si vous modifiez manuellement cette section et commettez une erreur, vous pouvez la supprimer. -->
+<!--Le package pourra toujours se charger normalement, mais les informations de disposition précédente seront perdues et le concepteur réorganisera automatiquement les éléments sur l'aire de conception.-->
+<Objects
+  Version="8">
+  <!--Chaque nœud ci-dessous contiendra des propriétés qui n'affectent pas le comportement d'exécution.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="172.8,41.6"
+          Id="Package\Alim_DIM_PATIENT"
+          TopLeft="149.666658789748,104.299999312957" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Alim_DIM_PATIENT">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="171.2,41.6"
+          Id="Package\Alim_DIM_PATIENT\Destination OLE DB"
+          TopLeft="121.333345034883,296.500000271202" />
+        <NodeLayout
+          Size="89.6,41.6"
+          Id="Package\Alim_DIM_PATIENT\sa"
+          TopLeft="101.333328097231,14.1666666063997" />
+        <NodeLayout
+          Size="172.8,41.6"
+          Id="Package\Alim_DIM_PATIENT\Commande OLE DB"
+          TopLeft="472.999974456927,280.833331657913" />
+        <NodeLayout
+          Size="128.8,41.6"
+          Id="Package\Alim_DIM_PATIENT\Recherche"
+          TopLeft="305.833316623338,175.533332218395" />
+        <NodeLayout
+          Size="188,41.6"
+          Id="Package\Alim_DIM_PATIENT\Conversion de données"
+          TopLeft="120.833326731291,91.8666660278373" />
+        <EdgeLayout
+          Id="Package\Alim_DIM_PATIENT.Paths[Sortie de source OLE DB]"
+          TopLeft="146.133328097231,55.7666666063997">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="68.6999986340604,36.0999994214376"
+              Start="0,0"
+              End="68.6999986340604,28.5999994214376">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,14.0499997107188" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,14.0499997107188"
+                    Point2="0,18.0499997107188"
+                    Point3="4,18.0499997107188" />
+                  <mssgle:LineSegment
+                    End="64.6999986340604,18.0499997107188" />
+                  <mssgle:CubicBezierSegment
+                    Point1="64.6999986340604,18.0499997107188"
+                    Point2="68.6999986340604,18.0499997107188"
+                    Point3="68.6999986340604,22.0499997107188" />
+                  <mssgle:LineSegment
+                    End="68.6999986340604,28.5999994214376" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Alim_DIM_PATIENT.Paths[Sortie de recherche sans correspondance]"
+          TopLeft="370.233316623338,217.133332218395">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-163.299971588454,79.3666680528063"
+              Start="0,0"
+              End="-163.299971588454,71.8666680528063">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,35.6833340264031" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,35.6833340264031"
+                    Point2="0,39.6833340264031"
+                    Point3="-4,39.6833340264031" />
+                  <mssgle:LineSegment
+                    End="-159.299971588454,39.6833340264031" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-159.299971588454,39.6833340264031"
+                    Point2="-163.299971588454,39.6833340264031"
+                    Point3="-163.299971588454,43.6833340264031" />
+                  <mssgle:LineSegment
+                    End="-163.299971588454,71.8666680528063" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-173.151997512977,44.6833340264031,183.0040234375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Alim_DIM_PATIENT.Paths[Sortie de recherche avec correspondance]"
+          TopLeft="390.366649956671,217.133332218395">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="169.033324500256,63.6999994395176"
+              Start="0,0"
+              End="169.033324500256,56.1999994395176">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,21.9489568268955" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,21.9489568268955"
+                    Point2="0,25.9489568268955"
+                    Point3="4,25.9489568268955" />
+                  <mssgle:LineSegment
+                    End="165.033324500256,25.9489568268955" />
+                  <mssgle:CubicBezierSegment
+                    Point1="165.033324500256,25.9489568268955"
+                    Point2="169.033324500256,25.9489568268955"
+                    Point3="169.033324500256,29.9489568268955" />
+                  <mssgle:LineSegment
+                    End="169.033324500256,56.1999994395176" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-7.16034946862182,30.9489568268955,183.3540234375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="154.4,41.6"
+          Id="Package\Alim_DIM_PATIENT\Colonne dérivée"
+          TopLeft="135.833325911728,141.266665684316" />
+        <EdgeLayout
+          Id="Package\Alim_DIM_PATIENT.Paths[Sortie de conversion de données]"
+          TopLeft="308.833326731291,112.666666027837">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-18.6000008195637,43.7999996564786"
+              Start="0,0"
+              End="-11.1000008195637,43.7999996564786">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="18.5,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="18.5,0"
+                    Point2="22.5,0"
+                    Point3="22.5,4" />
+                  <mssgle:LineSegment
+                    End="22.5,39.7999996564786" />
+                  <mssgle:CubicBezierSegment
+                    Point1="22.5,39.7999996564786"
+                    Point2="22.5,43.7999996564786"
+                    Point3="18.5,43.7999996564786" />
+                  <mssgle:LineSegment
+                    End="-11.1000008195637,43.7999996564786" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Alim_DIM_PATIENT.Paths[Sortie de colonne dérivée]"
+          TopLeft="290.233325911728,153.033332218395">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="79.9999907116099,22.5"
+              Start="0,0"
+              End="79.9999907116099,15">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="75.9999907116099,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="75.9999907116099,0"
+                    Point2="79.9999907116099,0"
+                    Point3="79.9999907116099,4" />
+                  <mssgle:LineSegment
+                    End="79.9999907116099,15" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Alim_DIM_PATIENT\Destination OLE DB">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Alim_DIM_PATIENT\sa">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Alim_DIM_PATIENT\Recherche">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:boolean">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string">[dbo].[DimPatient]</Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:int">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

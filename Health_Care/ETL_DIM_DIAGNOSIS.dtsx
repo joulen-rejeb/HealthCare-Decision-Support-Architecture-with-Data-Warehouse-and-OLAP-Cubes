@@ -1,0 +1,1369 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="11/20/2025 4:56:43 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="SANA"
+  DTS:CreatorName="SANA\eree"
+  DTS:DTSID="{26A3B8CC-06A4-494C-8CE1-63607E46444E}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="16.0.5685.2"
+  DTS:LocaleID="8192"
+  DTS:ObjectName="Package2"
+  DTS:PackageType="5"
+  DTS:VersionBuild="70"
+  DTS:VersionGUID="{0A82C0A4-1CAE-4BFB-80EB-66D58CA05E03}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[SANA\SQLEXPRESS01.DW_HealthCare]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{24C66AF5-5144-4670-B78D-42B644684810}"
+      DTS:ObjectName="SANA\SQLEXPRESS01.DW_HealthCare">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=SANA\SQLEXPRESS01;Initial Catalog=DW_HealthCare;Provider=SQLOLEDB.1;Integrated Security=SSPI;Application Name=SSIS-Package2-{24C66AF5-5144-4670-B78D-42B644684810}SANA\SQLEXPRESS01.DW_HealthCare;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[SANA\SQLEXPRESS01.HealthCare_SA;]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{E3E1C69D-225D-47C9-AA6B-390709CC7788}"
+      DTS:ObjectName="SANA\SQLEXPRESS01.HealthCare_SA;">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=SANA\SQLEXPRESS01;Initial Catalog=&quot;HealthCare_SA;&quot;;Provider=SQLOLEDB.1;Integrated Security=SSPI;Application Name=&quot;SSIS-Package2-{E3E1C69D-225D-47C9-AA6B-390709CC7788}SANA\SQLEXPRESS01.HealthCare_SA;&quot;;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[SANA\SQLEXPRESS01.HealthCare_SA; 1]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{E630B983-4251-409A-BED1-B7CEA337392F}"
+      DTS:ObjectName="SANA\SQLEXPRESS01.HealthCare_SA; 1">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=SANA\SQLEXPRESS01;Initial Catalog=&quot;HealthCare_SA;&quot;;Provider=SQLOLEDB.1;Integrated Security=SSPI;Application Name=&quot;SSIS-Package2-{E630B983-4251-409A-BED1-B7CEA337392F}SANA\SQLEXPRESS01.HealthCare_SA; 1&quot;;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Alim_DIM_DIAGNOSIS"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Tâche de flux de données"
+      DTS:DTSID="{78AB2ACF-EC1E-4C87-8B98-BC8F6E816084}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Alim_DIM_DIAGNOSIS"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Alim_DIM_DIAGNOSIS\Commande OLE DB"
+              componentClassID="Microsoft.OLEDBCommand"
+              contactInfo="Commande OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Tous droits réservés; http://www.microsoft.com/sql/support;2"
+              description="Exécute une instruction SQL pour chaque ligne d'un flux de données. Par exemple, appelez une procédure stockée 'nouvelle configuration d'employé' pour chaque ligne de la table 'nouveaux employés'. Remarque : l'exécution d'une instruction SQL pour chaque ligne d'un flux de données volumineux peut prendre beaucoup de temps."
+              name="Commande OLE DB"
+              usesDispositions="true"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Nombre de secondes avant l'expiration d'une commande.  Une valeur égale à 0 indique un délai d'expiration infini."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Commande SQL à exécuter."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">UPDATE [dbo].[Dim_Diagnostic]
+   SET 
+      [Patient_ID] = ?
+      ,[ICD_Code] = ?
+      ,[short_title] = ?
+      ,[long_title] = ?
+      ,[diagnosis_description] = ?
+      ,[admission_type] = ?
+      ,[hadm_id] = ?
+ WHERE [Diagnostic_PK] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie la page de codes de la colonne à utiliser lorsque les informations de page de codes ne sont pas disponibles à partir de la source de données."
+                  name="DefaultCodePage">1252</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Alim_DIM_DIAGNOSIS\Commande OLE DB.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[SANA\SQLEXPRESS01.DW_HealthCare]"
+                  connectionManagerRefId="Package.ConnectionManagers[SANA\SQLEXPRESS01.DW_HealthCare]"
+                  description="Connexion OLE DB en cours d'exécution utilisée pour accéder à la base de données."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Alim_DIM_DIAGNOSIS\Commande OLE DB.Inputs[Entrée de commande OLE DB]"
+                  errorOrTruncationOperation="Exécution de commande"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="Entrée de commande OLE DB">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Alim_DIM_DIAGNOSIS\Commande OLE DB.Inputs[Entrée de commande OLE DB].Columns[ICD_Code]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="ICD_Code"
+                      externalMetadataColumnId="Package\Alim_DIM_DIAGNOSIS\Commande OLE DB.Inputs[Entrée de commande OLE DB].ExternalColumns[Param_1]"
+                      lineageId="Package\Alim_DIM_DIAGNOSIS\Recherche.Outputs[Sortie de recherche avec correspondance].Columns[ICD_Code]" />
+                    <inputColumn
+                      refId="Package\Alim_DIM_DIAGNOSIS\Commande OLE DB.Inputs[Entrée de commande OLE DB].Columns[Patient_ID]"
+                      cachedDataType="i4"
+                      cachedName="Patient_ID"
+                      externalMetadataColumnId="Package\Alim_DIM_DIAGNOSIS\Commande OLE DB.Inputs[Entrée de commande OLE DB].ExternalColumns[Param_0]"
+                      lineageId="Package\Alim_DIM_DIAGNOSIS\Recherche.Outputs[Sortie de recherche avec correspondance].Columns[Patient_ID]" />
+                    <inputColumn
+                      refId="Package\Alim_DIM_DIAGNOSIS\Commande OLE DB.Inputs[Entrée de commande OLE DB].Columns[short_title]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="250"
+                      cachedName="short_title"
+                      externalMetadataColumnId="Package\Alim_DIM_DIAGNOSIS\Commande OLE DB.Inputs[Entrée de commande OLE DB].ExternalColumns[Param_2]"
+                      lineageId="Package\Alim_DIM_DIAGNOSIS\Recherche.Outputs[Sortie de recherche avec correspondance].Columns[short_title]" />
+                    <inputColumn
+                      refId="Package\Alim_DIM_DIAGNOSIS\Commande OLE DB.Inputs[Entrée de commande OLE DB].Columns[long_title]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="400"
+                      cachedName="long_title"
+                      externalMetadataColumnId="Package\Alim_DIM_DIAGNOSIS\Commande OLE DB.Inputs[Entrée de commande OLE DB].ExternalColumns[Param_3]"
+                      lineageId="Package\Alim_DIM_DIAGNOSIS\Recherche.Outputs[Sortie de recherche avec correspondance].Columns[long_title]" />
+                    <inputColumn
+                      refId="Package\Alim_DIM_DIAGNOSIS\Commande OLE DB.Inputs[Entrée de commande OLE DB].Columns[diagnosis_description]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="150"
+                      cachedName="diagnosis_description"
+                      externalMetadataColumnId="Package\Alim_DIM_DIAGNOSIS\Commande OLE DB.Inputs[Entrée de commande OLE DB].ExternalColumns[Param_4]"
+                      lineageId="Package\Alim_DIM_DIAGNOSIS\Recherche.Outputs[Sortie de recherche avec correspondance].Columns[diagnosis_description]" />
+                    <inputColumn
+                      refId="Package\Alim_DIM_DIAGNOSIS\Commande OLE DB.Inputs[Entrée de commande OLE DB].Columns[admission_type]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="admission_type"
+                      externalMetadataColumnId="Package\Alim_DIM_DIAGNOSIS\Commande OLE DB.Inputs[Entrée de commande OLE DB].ExternalColumns[Param_5]"
+                      lineageId="Package\Alim_DIM_DIAGNOSIS\Recherche.Outputs[Sortie de recherche avec correspondance].Columns[admission_type]" />
+                    <inputColumn
+                      refId="Package\Alim_DIM_DIAGNOSIS\Commande OLE DB.Inputs[Entrée de commande OLE DB].Columns[hadm_id]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="hadm_id"
+                      externalMetadataColumnId="Package\Alim_DIM_DIAGNOSIS\Commande OLE DB.Inputs[Entrée de commande OLE DB].ExternalColumns[Param_6]"
+                      lineageId="Package\Alim_DIM_DIAGNOSIS\Recherche.Outputs[Sortie de recherche avec correspondance].Columns[hadm_id]" />
+                    <inputColumn
+                      refId="Package\Alim_DIM_DIAGNOSIS\Commande OLE DB.Inputs[Entrée de commande OLE DB].Columns[Diagnostic_PK]"
+                      cachedDataType="i4"
+                      cachedName="Diagnostic_PK"
+                      externalMetadataColumnId="Package\Alim_DIM_DIAGNOSIS\Commande OLE DB.Inputs[Entrée de commande OLE DB].ExternalColumns[Param_7]"
+                      lineageId="Package\Alim_DIM_DIAGNOSIS\Recherche.Outputs[Sortie de recherche avec correspondance].Columns[Diagnostic_PK]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Alim_DIM_DIAGNOSIS\Commande OLE DB.Inputs[Entrée de commande OLE DB].ExternalColumns[Param_0]"
+                      dataType="i4"
+                      name="Param_0">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Informations de paramètre.  Correspond aux valeurs DBPARAMFLAGSENUM OLE DB."
+                          name="DBParamInfoFlags">81</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Alim_DIM_DIAGNOSIS\Commande OLE DB.Inputs[Entrée de commande OLE DB].ExternalColumns[Param_1]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Param_1">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Informations de paramètre.  Correspond aux valeurs DBPARAMFLAGSENUM OLE DB."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Alim_DIM_DIAGNOSIS\Commande OLE DB.Inputs[Entrée de commande OLE DB].ExternalColumns[Param_2]"
+                      codePage="1252"
+                      dataType="str"
+                      length="250"
+                      name="Param_2">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Informations de paramètre.  Correspond aux valeurs DBPARAMFLAGSENUM OLE DB."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Alim_DIM_DIAGNOSIS\Commande OLE DB.Inputs[Entrée de commande OLE DB].ExternalColumns[Param_3]"
+                      codePage="1252"
+                      dataType="str"
+                      length="400"
+                      name="Param_3">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Informations de paramètre.  Correspond aux valeurs DBPARAMFLAGSENUM OLE DB."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Alim_DIM_DIAGNOSIS\Commande OLE DB.Inputs[Entrée de commande OLE DB].ExternalColumns[Param_4]"
+                      codePage="1252"
+                      dataType="str"
+                      length="150"
+                      name="Param_4">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Informations de paramètre.  Correspond aux valeurs DBPARAMFLAGSENUM OLE DB."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Alim_DIM_DIAGNOSIS\Commande OLE DB.Inputs[Entrée de commande OLE DB].ExternalColumns[Param_5]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Param_5">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Informations de paramètre.  Correspond aux valeurs DBPARAMFLAGSENUM OLE DB."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Alim_DIM_DIAGNOSIS\Commande OLE DB.Inputs[Entrée de commande OLE DB].ExternalColumns[Param_6]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Param_6">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Informations de paramètre.  Correspond aux valeurs DBPARAMFLAGSENUM OLE DB."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Alim_DIM_DIAGNOSIS\Commande OLE DB.Inputs[Entrée de commande OLE DB].ExternalColumns[Param_7]"
+                      dataType="i4"
+                      name="Param_7">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Informations de paramètre.  Correspond aux valeurs DBPARAMFLAGSENUM OLE DB."
+                          name="DBParamInfoFlags">17</property>
+                      </properties>
+                    </externalMetadataColumn>
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Alim_DIM_DIAGNOSIS\Commande OLE DB.Outputs[Sortie de commande OLE DB]"
+                  exclusionGroup="1"
+                  name="Sortie de commande OLE DB"
+                  synchronousInputId="Package\Alim_DIM_DIAGNOSIS\Commande OLE DB.Inputs[Entrée de commande OLE DB]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Alim_DIM_DIAGNOSIS\Commande OLE DB.Outputs[Sortie d'erreur de commande OLE DB]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Sortie d'erreur de commande OLE DB"
+                  synchronousInputId="Package\Alim_DIM_DIAGNOSIS\Commande OLE DB.Inputs[Entrée de commande OLE DB]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Alim_DIM_DIAGNOSIS\Commande OLE DB.Outputs[Sortie d'erreur de commande OLE DB].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Alim_DIM_DIAGNOSIS\Commande OLE DB.Outputs[Sortie d'erreur de commande OLE DB].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Alim_DIM_DIAGNOSIS\Commande OLE DB.Outputs[Sortie d'erreur de commande OLE DB].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Alim_DIM_DIAGNOSIS\Commande OLE DB.Outputs[Sortie d'erreur de commande OLE DB].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Alim_DIM_DIAGNOSIS\Conversion de données"
+              componentClassID="Microsoft.DataConvert"
+              contactInfo="Conversion de données;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Tous droits réservés; http://www.microsoft.com/sql/support;0"
+              description="Conversion de données"
+              name="Conversion de données"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Alim_DIM_DIAGNOSIS\Conversion de données.Inputs[Entrée de conversion de données]"
+                  name="Entrée de conversion de données">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Alim_DIM_DIAGNOSIS\Conversion de données.Inputs[Entrée de conversion de données].Columns[hadm_id]"
+                      cachedDataType="i4"
+                      cachedName="hadm_id"
+                      lineageId="Package\Alim_DIM_DIAGNOSIS\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[hadm_id]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Alim_DIM_DIAGNOSIS\Conversion de données.Outputs[Sortie de conversion de données]"
+                  exclusionGroup="1"
+                  name="Sortie de conversion de données"
+                  synchronousInputId="Package\Alim_DIM_DIAGNOSIS\Conversion de données.Inputs[Entrée de conversion de données]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Alim_DIM_DIAGNOSIS\Conversion de données.Outputs[Sortie de conversion de données].Columns[Copy of hadm_id]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="50"
+                      lineageId="Package\Alim_DIM_DIAGNOSIS\Conversion de données.Outputs[Sortie de conversion de données].Columns[Copy of hadm_id]"
+                      name="Copy of hadm_id"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Spécifie la colonne d'entrée utilisée comme source de données pour la conversion."
+                          name="SourceInputColumnLineageID">#{Package\Alim_DIM_DIAGNOSIS\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[hadm_id]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indique si la colonne utilise les routines d'analyse les plus rapides, avec des paramètres régionaux neutres."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Alim_DIM_DIAGNOSIS\Conversion de données.Outputs[Sortie d'erreur de conversion de données]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Sortie d'erreur de conversion de données"
+                  synchronousInputId="Package\Alim_DIM_DIAGNOSIS\Conversion de données.Inputs[Entrée de conversion de données]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Alim_DIM_DIAGNOSIS\Conversion de données.Outputs[Sortie d'erreur de conversion de données].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Alim_DIM_DIAGNOSIS\Conversion de données.Outputs[Sortie d'erreur de conversion de données].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Alim_DIM_DIAGNOSIS\Conversion de données.Outputs[Sortie d'erreur de conversion de données].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Alim_DIM_DIAGNOSIS\Conversion de données.Outputs[Sortie d'erreur de conversion de données].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Alim_DIM_DIAGNOSIS\Destination OLE DB"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="Destination OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Tous droits réservés; http://www.microsoft.com/sql/support;4"
+              description="Destination OLE DB"
+              name="Destination OLE DB"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Nombre de secondes avant l'expiration d'une commande.  Une valeur égale à 0 indique un délai d'expiration infini."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Spécifie le nom de l'objet de base de données utilisé pour ouvrir un ensemble de lignes."
+                  name="OpenRowset">[dbo].[Dim_Diagnostic]</property>
+                <property
+                  dataType="System.String"
+                  description="Spécifie la variable contenant le nom de l'objet de base de données utilisé pour ouvrir un ensemble de lignes."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="Commande SQL à exécuter."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie la page de codes de la colonne à utiliser lorsque les informations de page de codes ne sont pas disponibles à partir de la source de données."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Force l'utilisation de la valeur de propriété DefaultCodePage lors de la description des données caractères."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie le mode utilisé pour accéder à la base de données."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indique si les valeurs fournies pour les colonnes d'identité seront copiées à la destination. Si la valeur est définie à False, les valeurs des colonnes d'identité seront générées automatiquement à la destination. Ne s'applique que si le chargement rapide est activé."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indique si les colonnes contenant la valeur NULL auront cette valeur NULL copiée à la destination. Si la valeur est définie à False, les colonnes contenant la valeur NULL auront leurs valeurs par défaut insérées à la destination. Ne s'applique que si le chargement rapide est activé."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Spécifie les options à utiliser avec le chargement rapide.  Ne s'applique que si le chargement rapide est activé."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie quand les validations sont émises pendant l'insertion des données.  Une valeur égale à 0 spécifie qu'une validation sera émise à la fin de l'insertion des données.  Ne s'applique que si le chargement rapide est activé."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Alim_DIM_DIAGNOSIS\Destination OLE DB.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[SANA\SQLEXPRESS01.DW_HealthCare]"
+                  connectionManagerRefId="Package.ConnectionManagers[SANA\SQLEXPRESS01.DW_HealthCare]"
+                  description="Connexion OLE DB en cours d'exécution utilisée pour accéder à la base de données."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Alim_DIM_DIAGNOSIS\Destination OLE DB.Inputs[Entrée de destination OLE DB]"
+                  errorOrTruncationOperation="Insérer"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="Entrée de destination OLE DB">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Alim_DIM_DIAGNOSIS\Destination OLE DB.Inputs[Entrée de destination OLE DB].Columns[admission_type]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="admission_type"
+                      externalMetadataColumnId="Package\Alim_DIM_DIAGNOSIS\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[admission_type]"
+                      lineageId="Package\Alim_DIM_DIAGNOSIS\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[admission_type]" />
+                    <inputColumn
+                      refId="Package\Alim_DIM_DIAGNOSIS\Destination OLE DB.Inputs[Entrée de destination OLE DB].Columns[short_title]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="250"
+                      cachedName="short_title"
+                      externalMetadataColumnId="Package\Alim_DIM_DIAGNOSIS\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[short_title]"
+                      lineageId="Package\Alim_DIM_DIAGNOSIS\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[short_title]" />
+                    <inputColumn
+                      refId="Package\Alim_DIM_DIAGNOSIS\Destination OLE DB.Inputs[Entrée de destination OLE DB].Columns[long_title]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="400"
+                      cachedName="long_title"
+                      externalMetadataColumnId="Package\Alim_DIM_DIAGNOSIS\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[long_title]"
+                      lineageId="Package\Alim_DIM_DIAGNOSIS\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[long_title]" />
+                    <inputColumn
+                      refId="Package\Alim_DIM_DIAGNOSIS\Destination OLE DB.Inputs[Entrée de destination OLE DB].Columns[subject_id]"
+                      cachedDataType="i4"
+                      cachedName="subject_id"
+                      externalMetadataColumnId="Package\Alim_DIM_DIAGNOSIS\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[Patient_ID]"
+                      lineageId="Package\Alim_DIM_DIAGNOSIS\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[subject_id]" />
+                    <inputColumn
+                      refId="Package\Alim_DIM_DIAGNOSIS\Destination OLE DB.Inputs[Entrée de destination OLE DB].Columns[icd9_code]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="icd9_code"
+                      externalMetadataColumnId="Package\Alim_DIM_DIAGNOSIS\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[ICD_Code]"
+                      lineageId="Package\Alim_DIM_DIAGNOSIS\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[icd9_code]" />
+                    <inputColumn
+                      refId="Package\Alim_DIM_DIAGNOSIS\Destination OLE DB.Inputs[Entrée de destination OLE DB].Columns[diagnosis]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="150"
+                      cachedName="diagnosis"
+                      externalMetadataColumnId="Package\Alim_DIM_DIAGNOSIS\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[diagnosis_description]"
+                      lineageId="Package\Alim_DIM_DIAGNOSIS\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[diagnosis]" />
+                    <inputColumn
+                      refId="Package\Alim_DIM_DIAGNOSIS\Destination OLE DB.Inputs[Entrée de destination OLE DB].Columns[Copy of hadm_id]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Copy of hadm_id"
+                      externalMetadataColumnId="Package\Alim_DIM_DIAGNOSIS\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[hadm_id]"
+                      lineageId="Package\Alim_DIM_DIAGNOSIS\Conversion de données.Outputs[Sortie de conversion de données].Columns[Copy of hadm_id]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Alim_DIM_DIAGNOSIS\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[Diagnostic_PK]"
+                      dataType="i4"
+                      name="Diagnostic_PK" />
+                    <externalMetadataColumn
+                      refId="Package\Alim_DIM_DIAGNOSIS\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[Patient_ID]"
+                      dataType="i4"
+                      name="Patient_ID" />
+                    <externalMetadataColumn
+                      refId="Package\Alim_DIM_DIAGNOSIS\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[ICD_Code]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="ICD_Code" />
+                    <externalMetadataColumn
+                      refId="Package\Alim_DIM_DIAGNOSIS\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[short_title]"
+                      codePage="1252"
+                      dataType="str"
+                      length="250"
+                      name="short_title" />
+                    <externalMetadataColumn
+                      refId="Package\Alim_DIM_DIAGNOSIS\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[long_title]"
+                      codePage="1252"
+                      dataType="str"
+                      length="400"
+                      name="long_title" />
+                    <externalMetadataColumn
+                      refId="Package\Alim_DIM_DIAGNOSIS\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[diagnosis_description]"
+                      codePage="1252"
+                      dataType="str"
+                      length="150"
+                      name="diagnosis_description" />
+                    <externalMetadataColumn
+                      refId="Package\Alim_DIM_DIAGNOSIS\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[admission_type]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="admission_type" />
+                    <externalMetadataColumn
+                      refId="Package\Alim_DIM_DIAGNOSIS\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[hadm_id]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="hadm_id" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Alim_DIM_DIAGNOSIS\Destination OLE DB.Outputs[Sortie d'erreur de destination OLE DB]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Sortie d'erreur de destination OLE DB"
+                  synchronousInputId="Package\Alim_DIM_DIAGNOSIS\Destination OLE DB.Inputs[Entrée de destination OLE DB]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Alim_DIM_DIAGNOSIS\Destination OLE DB.Outputs[Sortie d'erreur de destination OLE DB].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Alim_DIM_DIAGNOSIS\Destination OLE DB.Outputs[Sortie d'erreur de destination OLE DB].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Alim_DIM_DIAGNOSIS\Destination OLE DB.Outputs[Sortie d'erreur de destination OLE DB].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Alim_DIM_DIAGNOSIS\Destination OLE DB.Outputs[Sortie d'erreur de destination OLE DB].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Alim_DIM_DIAGNOSIS\Recherche"
+              componentClassID="Microsoft.Lookup"
+              contactInfo="Recherche;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Tous droits réservés; http://www.microsoft.com/sql/support;6"
+              description="Joint des colonnes supplémentaires au flux de données en recherchant des valeurs dans une table. Par exemple, joignez la colonne 'id employé' à la table des employés afin d'obtenir la 'date d'embauche' et le 'nom de l'employé'. Nous recommandons cette transformation lorsque la table de recherche peut être stockée en mémoire."
+              name="Recherche"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Spécifie l'instruction SQL qui génère la table de correspondance."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from [dbo].[Dim_Diagnostic]</property>
+                <property
+                  dataType="System.String"
+                  description="Spécifie une instruction SQL qui utilise des paramètres pour générer la table de correspondance."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (select * from [dbo].[Dim_Diagnostic]) [refTable]
+where [refTable].[Patient_ID] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie le type de connexion utilisé pour accéder au dataset de référence."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie le type de cache de la table de correspondance."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie comment la transformation de recherche gère les lignes sans entrées correspondantes dans le jeu de données de référence."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie le pourcentage du cache alloué aux lignes sans entrées correspondantes dans le dataset de référence."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Utilisation maximale de la mémoire pour le cache de référence sur une plateforme 32 bits."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Utilisation maximale de la mémoire pour le cache de référence sur une plateforme 64 bits."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indique si les métadonnées sont à référencer en format XML."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="Diagnostic_PK" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Patient_ID" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="ICD_Code" dataType="DT_STR" length="50" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="short_title" dataType="DT_STR" length="250" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="long_title" dataType="DT_STR" length="400" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="diagnosis_description" dataType="DT_STR" length="150" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="admission_type" dataType="DT_STR" length="50" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="hadm_id" dataType="DT_STR" length="50" precision="0" scale="0" codePage="1252"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Spécifie la liste d'identificateurs de traçabilité se mappant aux paramètres utilisés dans la propriété SQLCommand par l'instruction SQL. Les entrées dans la liste sont séparées par des points-virgules."
+                  name="ParameterMap">#{Package\Alim_DIM_DIAGNOSIS\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[subject_id]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie la page de codes de la colonne à utiliser lorsque les informations de page de codes ne sont pas disponibles à partir de la source de données."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Détermine si les clés dupliquées dans les données de référence doivent être traitées en tant qu'erreurs lorsque le mode Cache complet est utilisé."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Alim_DIM_DIAGNOSIS\Recherche.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[SANA\SQLEXPRESS01.DW_HealthCare]"
+                  connectionManagerRefId="Package.ConnectionManagers[SANA\SQLEXPRESS01.DW_HealthCare]"
+                  description="Gestionnaire de connexions utilisé pour accéder aux données de correspondance."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Alim_DIM_DIAGNOSIS\Recherche.Inputs[Entrée de recherche]"
+                  name="Entrée de recherche">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Alim_DIM_DIAGNOSIS\Recherche.Inputs[Entrée de recherche].Columns[subject_id]"
+                      cachedDataType="i4"
+                      cachedName="subject_id"
+                      lineageId="Package\Alim_DIM_DIAGNOSIS\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[subject_id]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Spécifie la colonne de la table de référence sur laquelle une colonne se lie."
+                          name="JoinToReferenceColumn">Patient_ID</property>
+                        <property
+                          dataType="System.Null"
+                          description="Spécifie la colonne de la table de référence à partir de laquelle une colonne est copiée."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Alim_DIM_DIAGNOSIS\Recherche.Outputs[Sortie de recherche avec correspondance]"
+                  errorOrTruncationOperation="Recherche"
+                  exclusionGroup="1"
+                  name="Sortie de recherche avec correspondance"
+                  synchronousInputId="Package\Alim_DIM_DIAGNOSIS\Recherche.Inputs[Entrée de recherche]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Alim_DIM_DIAGNOSIS\Recherche.Outputs[Sortie de recherche avec correspondance].Columns[Diagnostic_PK]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Copie de colonnes"
+                      lineageId="Package\Alim_DIM_DIAGNOSIS\Recherche.Outputs[Sortie de recherche avec correspondance].Columns[Diagnostic_PK]"
+                      name="Diagnostic_PK"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Spécifie la colonne de la table de référence à partir de laquelle une colonne est copiée."
+                          name="CopyFromReferenceColumn">Diagnostic_PK</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Alim_DIM_DIAGNOSIS\Recherche.Outputs[Sortie de recherche avec correspondance].Columns[Patient_ID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Copie de colonnes"
+                      lineageId="Package\Alim_DIM_DIAGNOSIS\Recherche.Outputs[Sortie de recherche avec correspondance].Columns[Patient_ID]"
+                      name="Patient_ID"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Spécifie la colonne de la table de référence à partir de laquelle une colonne est copiée."
+                          name="CopyFromReferenceColumn">Patient_ID</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Alim_DIM_DIAGNOSIS\Recherche.Outputs[Sortie de recherche avec correspondance].Columns[ICD_Code]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Copie de colonnes"
+                      length="50"
+                      lineageId="Package\Alim_DIM_DIAGNOSIS\Recherche.Outputs[Sortie de recherche avec correspondance].Columns[ICD_Code]"
+                      name="ICD_Code"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Spécifie la colonne de la table de référence à partir de laquelle une colonne est copiée."
+                          name="CopyFromReferenceColumn">ICD_Code</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Alim_DIM_DIAGNOSIS\Recherche.Outputs[Sortie de recherche avec correspondance].Columns[short_title]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Copie de colonnes"
+                      length="250"
+                      lineageId="Package\Alim_DIM_DIAGNOSIS\Recherche.Outputs[Sortie de recherche avec correspondance].Columns[short_title]"
+                      name="short_title"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Spécifie la colonne de la table de référence à partir de laquelle une colonne est copiée."
+                          name="CopyFromReferenceColumn">short_title</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Alim_DIM_DIAGNOSIS\Recherche.Outputs[Sortie de recherche avec correspondance].Columns[long_title]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Copie de colonnes"
+                      length="400"
+                      lineageId="Package\Alim_DIM_DIAGNOSIS\Recherche.Outputs[Sortie de recherche avec correspondance].Columns[long_title]"
+                      name="long_title"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Spécifie la colonne de la table de référence à partir de laquelle une colonne est copiée."
+                          name="CopyFromReferenceColumn">long_title</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Alim_DIM_DIAGNOSIS\Recherche.Outputs[Sortie de recherche avec correspondance].Columns[diagnosis_description]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Copie de colonnes"
+                      length="150"
+                      lineageId="Package\Alim_DIM_DIAGNOSIS\Recherche.Outputs[Sortie de recherche avec correspondance].Columns[diagnosis_description]"
+                      name="diagnosis_description"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Spécifie la colonne de la table de référence à partir de laquelle une colonne est copiée."
+                          name="CopyFromReferenceColumn">diagnosis_description</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Alim_DIM_DIAGNOSIS\Recherche.Outputs[Sortie de recherche avec correspondance].Columns[admission_type]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Copie de colonnes"
+                      length="50"
+                      lineageId="Package\Alim_DIM_DIAGNOSIS\Recherche.Outputs[Sortie de recherche avec correspondance].Columns[admission_type]"
+                      name="admission_type"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Spécifie la colonne de la table de référence à partir de laquelle une colonne est copiée."
+                          name="CopyFromReferenceColumn">admission_type</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Alim_DIM_DIAGNOSIS\Recherche.Outputs[Sortie de recherche avec correspondance].Columns[hadm_id]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Copie de colonnes"
+                      length="50"
+                      lineageId="Package\Alim_DIM_DIAGNOSIS\Recherche.Outputs[Sortie de recherche avec correspondance].Columns[hadm_id]"
+                      name="hadm_id"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Spécifie la colonne de la table de référence à partir de laquelle une colonne est copiée."
+                          name="CopyFromReferenceColumn">hadm_id</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Alim_DIM_DIAGNOSIS\Recherche.Outputs[Sortie de recherche sans correspondance]"
+                  description="Sortie de recherche gérant les lignes sans entrées correspondantes dans le dataset de référence. Utilisez cette sortie lorsque la propriété NoMatchBehavior a la valeur « Envoyez les lignes sans entrées correspondantes dans la sortie sans correspondance »."
+                  exclusionGroup="1"
+                  name="Sortie de recherche sans correspondance"
+                  synchronousInputId="Package\Alim_DIM_DIAGNOSIS\Recherche.Inputs[Entrée de recherche]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Alim_DIM_DIAGNOSIS\Recherche.Outputs[Sortie d'erreur de recherche]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Sortie d'erreur de recherche"
+                  synchronousInputId="Package\Alim_DIM_DIAGNOSIS\Recherche.Inputs[Entrée de recherche]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Alim_DIM_DIAGNOSIS\Recherche.Outputs[Sortie d'erreur de recherche].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Alim_DIM_DIAGNOSIS\Recherche.Outputs[Sortie d'erreur de recherche].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Alim_DIM_DIAGNOSIS\Recherche.Outputs[Sortie d'erreur de recherche].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Alim_DIM_DIAGNOSIS\Recherche.Outputs[Sortie d'erreur de recherche].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Alim_DIM_DIAGNOSIS\Source OLE DB"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="Source OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Tous droits réservés; http://www.microsoft.com/sql/support;7"
+              description="Source OLE DB"
+              name="Source OLE DB"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Nombre de secondes avant l'expiration d'une commande.  Une valeur égale à 0 indique un délai d'expiration infini."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Spécifie le nom de l'objet de base de données utilisé pour ouvrir un ensemble de lignes."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Spécifie la variable contenant le nom de l'objet de base de données utilisé pour ouvrir un ensemble de lignes."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="Commande SQL à exécuter."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT ADMISSIONS_SA.subject_id, ADMISSIONS_SA.hadm_id, ADMISSIONS_SA.admission_type, ADMISSIONS_SA.diagnosis, D_ICD_DIAGNOSES_SA.icd9_code, D_ICD_DIAGNOSES_SA.short_title, D_ICD_DIAGNOSES_SA.long_title
+FROM     ADMISSIONS_SA CROSS JOIN
+                  [D_ICD_DIAGNOSES_SA.]</property>
+                <property
+                  dataType="System.String"
+                  description="Variable contenant la commande SQL à exécuter."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie la page de codes de la colonne à utiliser lorsque les informations de page de codes ne sont pas disponibles à partir de la source de données."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Force l'utilisation de la valeur de propriété DefaultCodePage lors de la description des données caractères."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie le mode utilisé pour accéder à la base de données."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="Mappages entre les paramètres de la commande SQL et les variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Alim_DIM_DIAGNOSIS\Source OLE DB.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[SANA\SQLEXPRESS01.HealthCare_SA;]"
+                  connectionManagerRefId="Package.ConnectionManagers[SANA\SQLEXPRESS01.HealthCare_SA;]"
+                  description="Connexion OLE DB en cours d'exécution utilisée pour accéder à la base de données."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Alim_DIM_DIAGNOSIS\Source OLE DB.Outputs[Sortie de source OLE DB]"
+                  name="Sortie de source OLE DB">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Alim_DIM_DIAGNOSIS\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[subject_id]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Alim_DIM_DIAGNOSIS\Source OLE DB.Outputs[Sortie de source OLE DB].ExternalColumns[subject_id]"
+                      lineageId="Package\Alim_DIM_DIAGNOSIS\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[subject_id]"
+                      name="subject_id"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Alim_DIM_DIAGNOSIS\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[hadm_id]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Alim_DIM_DIAGNOSIS\Source OLE DB.Outputs[Sortie de source OLE DB].ExternalColumns[hadm_id]"
+                      lineageId="Package\Alim_DIM_DIAGNOSIS\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[hadm_id]"
+                      name="hadm_id"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Alim_DIM_DIAGNOSIS\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[admission_type]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Alim_DIM_DIAGNOSIS\Source OLE DB.Outputs[Sortie de source OLE DB].ExternalColumns[admission_type]"
+                      length="50"
+                      lineageId="Package\Alim_DIM_DIAGNOSIS\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[admission_type]"
+                      name="admission_type"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Alim_DIM_DIAGNOSIS\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[diagnosis]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Alim_DIM_DIAGNOSIS\Source OLE DB.Outputs[Sortie de source OLE DB].ExternalColumns[diagnosis]"
+                      length="150"
+                      lineageId="Package\Alim_DIM_DIAGNOSIS\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[diagnosis]"
+                      name="diagnosis"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Alim_DIM_DIAGNOSIS\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[icd9_code]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Alim_DIM_DIAGNOSIS\Source OLE DB.Outputs[Sortie de source OLE DB].ExternalColumns[icd9_code]"
+                      length="50"
+                      lineageId="Package\Alim_DIM_DIAGNOSIS\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[icd9_code]"
+                      name="icd9_code"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Alim_DIM_DIAGNOSIS\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[short_title]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Alim_DIM_DIAGNOSIS\Source OLE DB.Outputs[Sortie de source OLE DB].ExternalColumns[short_title]"
+                      length="250"
+                      lineageId="Package\Alim_DIM_DIAGNOSIS\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[short_title]"
+                      name="short_title"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Alim_DIM_DIAGNOSIS\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[long_title]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Alim_DIM_DIAGNOSIS\Source OLE DB.Outputs[Sortie de source OLE DB].ExternalColumns[long_title]"
+                      length="400"
+                      lineageId="Package\Alim_DIM_DIAGNOSIS\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[long_title]"
+                      name="long_title"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Alim_DIM_DIAGNOSIS\Source OLE DB.Outputs[Sortie de source OLE DB].ExternalColumns[subject_id]"
+                      dataType="i4"
+                      name="subject_id" />
+                    <externalMetadataColumn
+                      refId="Package\Alim_DIM_DIAGNOSIS\Source OLE DB.Outputs[Sortie de source OLE DB].ExternalColumns[hadm_id]"
+                      dataType="i4"
+                      name="hadm_id" />
+                    <externalMetadataColumn
+                      refId="Package\Alim_DIM_DIAGNOSIS\Source OLE DB.Outputs[Sortie de source OLE DB].ExternalColumns[admission_type]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="admission_type" />
+                    <externalMetadataColumn
+                      refId="Package\Alim_DIM_DIAGNOSIS\Source OLE DB.Outputs[Sortie de source OLE DB].ExternalColumns[diagnosis]"
+                      codePage="1252"
+                      dataType="str"
+                      length="150"
+                      name="diagnosis" />
+                    <externalMetadataColumn
+                      refId="Package\Alim_DIM_DIAGNOSIS\Source OLE DB.Outputs[Sortie de source OLE DB].ExternalColumns[icd9_code]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="icd9_code" />
+                    <externalMetadataColumn
+                      refId="Package\Alim_DIM_DIAGNOSIS\Source OLE DB.Outputs[Sortie de source OLE DB].ExternalColumns[short_title]"
+                      codePage="1252"
+                      dataType="str"
+                      length="250"
+                      name="short_title" />
+                    <externalMetadataColumn
+                      refId="Package\Alim_DIM_DIAGNOSIS\Source OLE DB.Outputs[Sortie de source OLE DB].ExternalColumns[long_title]"
+                      codePage="1252"
+                      dataType="str"
+                      length="400"
+                      name="long_title" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Alim_DIM_DIAGNOSIS\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB]"
+                  isErrorOut="true"
+                  name="Sortie d'erreur de source OLE DB">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Alim_DIM_DIAGNOSIS\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB].Columns[subject_id]"
+                      dataType="i4"
+                      lineageId="Package\Alim_DIM_DIAGNOSIS\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB].Columns[subject_id]"
+                      name="subject_id" />
+                    <outputColumn
+                      refId="Package\Alim_DIM_DIAGNOSIS\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB].Columns[hadm_id]"
+                      dataType="i4"
+                      lineageId="Package\Alim_DIM_DIAGNOSIS\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB].Columns[hadm_id]"
+                      name="hadm_id" />
+                    <outputColumn
+                      refId="Package\Alim_DIM_DIAGNOSIS\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB].Columns[admission_type]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Alim_DIM_DIAGNOSIS\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB].Columns[admission_type]"
+                      name="admission_type" />
+                    <outputColumn
+                      refId="Package\Alim_DIM_DIAGNOSIS\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB].Columns[diagnosis]"
+                      codePage="1252"
+                      dataType="str"
+                      length="150"
+                      lineageId="Package\Alim_DIM_DIAGNOSIS\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB].Columns[diagnosis]"
+                      name="diagnosis" />
+                    <outputColumn
+                      refId="Package\Alim_DIM_DIAGNOSIS\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB].Columns[icd9_code]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Alim_DIM_DIAGNOSIS\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB].Columns[icd9_code]"
+                      name="icd9_code" />
+                    <outputColumn
+                      refId="Package\Alim_DIM_DIAGNOSIS\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB].Columns[short_title]"
+                      codePage="1252"
+                      dataType="str"
+                      length="250"
+                      lineageId="Package\Alim_DIM_DIAGNOSIS\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB].Columns[short_title]"
+                      name="short_title" />
+                    <outputColumn
+                      refId="Package\Alim_DIM_DIAGNOSIS\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB].Columns[long_title]"
+                      codePage="1252"
+                      dataType="str"
+                      length="400"
+                      lineageId="Package\Alim_DIM_DIAGNOSIS\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB].Columns[long_title]"
+                      name="long_title" />
+                    <outputColumn
+                      refId="Package\Alim_DIM_DIAGNOSIS\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Alim_DIM_DIAGNOSIS\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Alim_DIM_DIAGNOSIS\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Alim_DIM_DIAGNOSIS\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Alim_DIM_DIAGNOSIS.Paths[Sortie de conversion de données]"
+              endId="Package\Alim_DIM_DIAGNOSIS\Recherche.Inputs[Entrée de recherche]"
+              name="Sortie de conversion de données"
+              startId="Package\Alim_DIM_DIAGNOSIS\Conversion de données.Outputs[Sortie de conversion de données]" />
+            <path
+              refId="Package\Alim_DIM_DIAGNOSIS.Paths[Sortie de recherche avec correspondance]"
+              endId="Package\Alim_DIM_DIAGNOSIS\Commande OLE DB.Inputs[Entrée de commande OLE DB]"
+              name="Sortie de recherche avec correspondance"
+              startId="Package\Alim_DIM_DIAGNOSIS\Recherche.Outputs[Sortie de recherche avec correspondance]" />
+            <path
+              refId="Package\Alim_DIM_DIAGNOSIS.Paths[Sortie de recherche sans correspondance]"
+              endId="Package\Alim_DIM_DIAGNOSIS\Destination OLE DB.Inputs[Entrée de destination OLE DB]"
+              name="Sortie de recherche sans correspondance"
+              startId="Package\Alim_DIM_DIAGNOSIS\Recherche.Outputs[Sortie de recherche sans correspondance]" />
+            <path
+              refId="Package\Alim_DIM_DIAGNOSIS.Paths[Sortie de source OLE DB]"
+              endId="Package\Alim_DIM_DIAGNOSIS\Conversion de données.Inputs[Entrée de conversion de données]"
+              name="Sortie de source OLE DB"
+              startId="Package\Alim_DIM_DIAGNOSIS\Source OLE DB.Outputs[Sortie de source OLE DB]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--Cette section CDATA contient des informations sur la disposition du package. Elle comprend des informations telles que les coordonnées (x,y), la largeur et la hauteur.-->
+<!--Si vous modifiez manuellement cette section et commettez une erreur, vous pouvez la supprimer. -->
+<!--Le package pourra toujours se charger normalement, mais les informations de disposition précédente seront perdues et le concepteur réorganisera automatiquement les éléments sur l'aire de conception.-->
+<Objects
+  Version="8">
+  <!--Chaque nœud ci-dessous contiendra des propriétés qui n'affectent pas le comportement d'exécution.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="187.2,41.6"
+          Id="Package\Alim_DIM_DIAGNOSIS"
+          TopLeft="297.166650730703,181.433332109915" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Alim_DIM_DIAGNOSIS">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="152,41.6"
+          Id="Package\Alim_DIM_DIAGNOSIS\Source OLE DB"
+          TopLeft="220.499991531173,46.4333334659206" />
+        <NodeLayout
+          Size="172.8,41.6"
+          Id="Package\Alim_DIM_DIAGNOSIS\Commande OLE DB"
+          TopLeft="381.958317681941,354.416664866193" />
+        <NodeLayout
+          Size="171.2,41.6"
+          Id="Package\Alim_DIM_DIAGNOSIS\Destination OLE DB"
+          TopLeft="125.916663365646,351.499998011192" />
+        <NodeLayout
+          Size="128.8,41.6"
+          Id="Package\Alim_DIM_DIAGNOSIS\Recherche"
+          TopLeft="292.79165260887,247.833331856794" />
+        <NodeLayout
+          Size="188,41.6"
+          Id="Package\Alim_DIM_DIAGNOSIS\Conversion de données"
+          TopLeft="252.374986511345,152.833332308796" />
+        <EdgeLayout
+          Id="Package\Alim_DIM_DIAGNOSIS.Paths[Sortie de conversion de données]"
+          TopLeft="346.374986511345,194.433332308796">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="10.8166660975251,53.3999995479982"
+              Start="0,0"
+              End="10.8166660975251,45.8999995479982">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,22.6999997739991" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,22.6999997739991"
+                    Point2="0,26.6999997739991"
+                    Point3="4,26.6999997739991" />
+                  <mssgle:LineSegment
+                    End="6.81666609752506,26.6999997739991" />
+                  <mssgle:CubicBezierSegment
+                    Point1="6.81666609752506,26.6999997739991"
+                    Point2="10.8166660975251,26.6999997739991"
+                    Point3="10.8166660975251,30.6999997739991" />
+                  <mssgle:LineSegment
+                    End="10.8166660975251,45.8999995479982" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Alim_DIM_DIAGNOSIS.Paths[Sortie de source OLE DB]"
+          TopLeft="296.499991531173,88.0333334659206">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="49.8749949801716,64.7999988428754"
+              Start="0,0"
+              End="49.8749949801716,57.2999988428754">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,28.3999994214377" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,28.3999994214377"
+                    Point2="0,32.3999994214377"
+                    Point3="4,32.3999994214377" />
+                  <mssgle:LineSegment
+                    End="45.8749949801716,32.3999994214377" />
+                  <mssgle:CubicBezierSegment
+                    Point1="45.8749949801716,32.3999994214377"
+                    Point2="49.8749949801716,32.3999994214377"
+                    Point3="49.8749949801716,36.3999994214377" />
+                  <mssgle:LineSegment
+                    End="49.8749949801716,57.2999988428754" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Alim_DIM_DIAGNOSIS.Paths[Sortie de recherche sans correspondance]"
+          TopLeft="357.19165260887,289.433331856794">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-145.674989243225,62.0666661543978"
+              Start="0,0"
+              End="-145.674989243225,54.5666661543978">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,27.0333330771989" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,27.0333330771989"
+                    Point2="0,31.0333330771989"
+                    Point3="-4,31.0333330771989" />
+                  <mssgle:LineSegment
+                    End="-141.674989243225,31.0333330771989" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-141.674989243225,31.0333330771989"
+                    Point2="-145.674989243225,31.0333330771989"
+                    Point3="-145.674989243225,35.0333330771989" />
+                  <mssgle:LineSegment
+                    End="-145.674989243225,54.5666661543978" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-195.569896965362,36.0333330771989,183.0040234375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Alim_DIM_DIAGNOSIS.Paths[Sortie de recherche avec correspondance]"
+          TopLeft="377.324985942204,289.433331856794">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="91.033331739737,64.9833330093986"
+              Start="0,0"
+              End="91.033331739737,57.4833330093986">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,22.4717381093501" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,22.4717381093501"
+                    Point2="0,26.4717381093501"
+                    Point3="4,26.4717381093501" />
+                  <mssgle:LineSegment
+                    End="87.033331739737,26.4717381093501" />
+                  <mssgle:CubicBezierSegment
+                    Point1="87.033331739737,26.4717381093501"
+                    Point2="91.033331739737,26.4717381093501"
+                    Point3="91.033331739737,30.4717381093501" />
+                  <mssgle:LineSegment
+                    End="91.033331739737,57.4833330093986" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-46.1603458488815,31.4717381093501,183.3540234375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Alim_DIM_DIAGNOSIS\Source OLE DB">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Alim_DIM_DIAGNOSIS\Destination OLE DB">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Alim_DIM_DIAGNOSIS\Recherche">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:string">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string">[dbo].[Dim_Diagnostic]</Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:string">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

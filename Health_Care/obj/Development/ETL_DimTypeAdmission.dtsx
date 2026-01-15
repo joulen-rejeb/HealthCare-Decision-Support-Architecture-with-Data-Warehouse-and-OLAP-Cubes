@@ -1,0 +1,1723 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="11/22/2025 6:17:30 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="SANA"
+  DTS:CreatorName="SANA\eree"
+  DTS:DTSID="{3D63CD4B-4D1E-4F24-A1C1-683ADBFF976C}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="16.0.5685.2"
+  DTS:LocaleID="8192"
+  DTS:ObjectName="Package2"
+  DTS:PackageType="5"
+  DTS:VersionBuild="15"
+  DTS:VersionGUID="{FE6B8A61-AE1F-4E2A-AE86-18D33410DDA9}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[SANA\SQLEXPRESS01]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{CD79E391-80B6-4B24-B122-99CC443434EC}"
+      DTS:ObjectName="SANA\SQLEXPRESS01">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=SANA\SQLEXPRESS01;Provider=SQLNCLIRDA11.1;Integrated Security=SSPI;Application Name=SSIS-Package2-{CD79E391-80B6-4B24-B122-99CC443434EC}SANA\SQLEXPRESS01;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[SANA\SQLEXPRESS01.DW_HealthCare]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{F85CEA2E-0AA7-480D-B3D1-C42D974D651B}"
+      DTS:ObjectName="SANA\SQLEXPRESS01.DW_HealthCare">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=SANA\SQLEXPRESS01;Initial Catalog=DW_HealthCare;Provider=SQLOLEDB.1;Integrated Security=SSPI;Application Name=SSIS-Package2-{F85CEA2E-0AA7-480D-B3D1-C42D974D651B}SANA\SQLEXPRESS01.DW_HealthCare;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[SANA\SQLEXPRESS01.DW_HealthCare 1]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{C65F0BEF-4B12-4D7A-BB25-C3E8DE7C3046}"
+      DTS:ObjectName="SANA\SQLEXPRESS01.DW_HealthCare 1">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=SANA\SQLEXPRESS01;Initial Catalog=DW_HealthCare;Provider=SQLOLEDB.1;Integrated Security=SSPI;Application Name=SSIS-Package2-{C65F0BEF-4B12-4D7A-BB25-C3E8DE7C3046}SANA\SQLEXPRESS01.DW_HealthCare 1;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[SANA\SQLEXPRESS01.DW_HealthCare 2]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{EE49E62D-4D56-4511-95D2-BDF3491E0307}"
+      DTS:ObjectName="SANA\SQLEXPRESS01.DW_HealthCare 2">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=SANA\SQLEXPRESS01;Initial Catalog=DW_HealthCare;Provider=SQLOLEDB.1;Integrated Security=SSPI;Application Name=SSIS-Package2-{EE49E62D-4D56-4511-95D2-BDF3491E0307}SANA\SQLEXPRESS01.DW_HealthCare 2;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[SANA\SQLEXPRESS01.HealthCare_SA;]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{BC40FC33-5CC0-4853-BF1C-D9AC194151CE}"
+      DTS:ObjectName="SANA\SQLEXPRESS01.HealthCare_SA;">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=SANA\SQLEXPRESS01;Initial Catalog=&quot;HealthCare_SA;&quot;;Provider=SQLOLEDB.1;Integrated Security=SSPI;Application Name=&quot;SSIS-Package2-{BC40FC33-5CC0-4853-BF1C-D9AC194151CE}SANA\SQLEXPRESS01.HealthCare_SA;&quot;;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Alim_Dim_TypeAdmission"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Tâche de flux de données"
+      DTS:DTSID="{C5991DF9-DBF0-43E6-84A8-C094B43218EE}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Alim_Dim_TypeAdmission"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Alim_Dim_TypeAdmission\Colonne dérivée"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Colonne dérivée;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Tous droits réservés; http://www.microsoft.com/sql/support;0"
+              description="Crée de nouvelles valeurs de colonne en appliquant des expressions aux colonnes d'entrée de transformation. Créez de nouvelles colonnes ou remplacez celles qui existent déjà. Par exemple, concaténez les valeurs de la colonne 'prénom' et de la colonne 'nom' pour créer une colonne 'nom complet'."
+              name="Colonne dérivée"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Alim_Dim_TypeAdmission\Colonne dérivée.Inputs[Entrée de colonne dérivée]"
+                  description="Entrée de la transformation de colonnes dérivées"
+                  name="Entrée de colonne dérivée">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Alim_Dim_TypeAdmission\Colonne dérivée.Inputs[Entrée de colonne dérivée].Columns[admission_type]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="admission_type"
+                      lineageId="Package\Alim_Dim_TypeAdmission\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[admission_type]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Alim_Dim_TypeAdmission\Colonne dérivée.Outputs[Sortie de colonne dérivée]"
+                  description="Sortie par défaut de la transformation de colonnes dérivées"
+                  exclusionGroup="1"
+                  name="Sortie de colonne dérivée"
+                  synchronousInputId="Package\Alim_Dim_TypeAdmission\Colonne dérivée.Inputs[Entrée de colonne dérivée]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Alim_Dim_TypeAdmission\Colonne dérivée.Outputs[Sortie de colonne dérivée].Columns[Admission_Class]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Calcul"
+                      errorRowDisposition="FailComponent"
+                      length="11"
+                      lineageId="Package\Alim_Dim_TypeAdmission\Colonne dérivée.Outputs[Sortie de colonne dérivée].Columns[Admission_Class]"
+                      name="Admission_Class"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Expression de colonne dérivée"
+                          name="Expression">(#{Package\Alim_Dim_TypeAdmission\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[admission_type]} == "ELECTIVE") ? "Scheduled" : (#{Package\Alim_Dim_TypeAdmission\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[admission_type]} == "EMERGENCY") ? "Unscheduled" : (#{Package\Alim_Dim_TypeAdmission\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[admission_type]} == "URGENT") ? "Unscheduled" : "Unknown"</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Expression claire de colonne dérivée"
+                          expressionType="Notify"
+                          name="FriendlyExpression">(admission_type == "ELECTIVE") ? "Scheduled" : (admission_type == "EMERGENCY") ? "Unscheduled" : (admission_type == "URGENT") ? "Unscheduled" : "Unknown"</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Alim_Dim_TypeAdmission\Colonne dérivée.Outputs[Sortie de colonne dérivée].Columns[Admission_Level]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Calcul"
+                      errorRowDisposition="FailComponent"
+                      length="7"
+                      lineageId="Package\Alim_Dim_TypeAdmission\Colonne dérivée.Outputs[Sortie de colonne dérivée].Columns[Admission_Level]"
+                      name="Admission_Level"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Expression de colonne dérivée"
+                          name="Expression">(#{Package\Alim_Dim_TypeAdmission\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[admission_type]} == "EMERGENCY") ? "High" : (#{Package\Alim_Dim_TypeAdmission\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[admission_type]} == "URGENT") ? "Medium" : (#{Package\Alim_Dim_TypeAdmission\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[admission_type]} == "ELECTIVE") ? "Low" : "Unknown"</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Expression claire de colonne dérivée"
+                          expressionType="Notify"
+                          name="FriendlyExpression">(admission_type == "EMERGENCY") ? "High" : (admission_type == "URGENT") ? "Medium" : (admission_type == "ELECTIVE") ? "Low" : "Unknown"</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Alim_Dim_TypeAdmission\Colonne dérivée.Outputs[Sortie de colonne dérivée].Columns[Admission_Flag_Emergency]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Calcul"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Alim_Dim_TypeAdmission\Colonne dérivée.Outputs[Sortie de colonne dérivée].Columns[Admission_Flag_Emergency]"
+                      name="Admission_Flag_Emergency"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Expression de colonne dérivée"
+                          name="Expression">(#{Package\Alim_Dim_TypeAdmission\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[admission_type]} == "EMERGENCY" || #{Package\Alim_Dim_TypeAdmission\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[admission_type]} == "URGENT") ? 1 : 0</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Expression claire de colonne dérivée"
+                          expressionType="Notify"
+                          name="FriendlyExpression">(admission_type == "EMERGENCY" || admission_type == "URGENT") ? 1 : 0</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Alim_Dim_TypeAdmission\Colonne dérivée.Outputs[Sortie de colonne dérivée].Columns[Description]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Calcul"
+                      errorRowDisposition="FailComponent"
+                      length="36"
+                      lineageId="Package\Alim_Dim_TypeAdmission\Colonne dérivée.Outputs[Sortie de colonne dérivée].Columns[Description]"
+                      name="Description"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Expression de colonne dérivée"
+                          name="Expression">(#{Package\Alim_Dim_TypeAdmission\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[admission_type]} == "EMERGENCY") ? "Admission due to emergency condition" : (#{Package\Alim_Dim_TypeAdmission\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[admission_type]} == "ELECTIVE") ? "Planned or scheduled admission" : (#{Package\Alim_Dim_TypeAdmission\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[admission_type]} == "URGENT") ? "Rapid but not emergency admission" : "Other admission type"</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Expression claire de colonne dérivée"
+                          expressionType="Notify"
+                          name="FriendlyExpression">(admission_type == "EMERGENCY") ? "Admission due to emergency condition" : (admission_type == "ELECTIVE") ? "Planned or scheduled admission" : (admission_type == "URGENT") ? "Rapid but not emergency admission" : "Other admission type"</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Alim_Dim_TypeAdmission\Colonne dérivée.Outputs[Sortie d'erreur de colonne dérivée]"
+                  description="Sortie d'erreur de la transformation de colonnes dérivées"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Sortie d'erreur de colonne dérivée"
+                  synchronousInputId="Package\Alim_Dim_TypeAdmission\Colonne dérivée.Inputs[Entrée de colonne dérivée]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Alim_Dim_TypeAdmission\Colonne dérivée.Outputs[Sortie d'erreur de colonne dérivée].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Alim_Dim_TypeAdmission\Colonne dérivée.Outputs[Sortie d'erreur de colonne dérivée].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Alim_Dim_TypeAdmission\Colonne dérivée.Outputs[Sortie d'erreur de colonne dérivée].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Alim_Dim_TypeAdmission\Colonne dérivée.Outputs[Sortie d'erreur de colonne dérivée].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Alim_Dim_TypeAdmission\Commande OLE DB"
+              componentClassID="Microsoft.OLEDBCommand"
+              contactInfo="Commande OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Tous droits réservés; http://www.microsoft.com/sql/support;2"
+              description="Exécute une instruction SQL pour chaque ligne d'un flux de données. Par exemple, appelez une procédure stockée 'nouvelle configuration d'employé' pour chaque ligne de la table 'nouveaux employés'. Remarque : l'exécution d'une instruction SQL pour chaque ligne d'un flux de données volumineux peut prendre beaucoup de temps."
+              name="Commande OLE DB"
+              usesDispositions="true"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Nombre de secondes avant l'expiration d'une commande.  Une valeur égale à 0 indique un délai d'expiration infini."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Commande SQL à exécuter."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">UPDATE [dbo].[Dim_TypeAdmission]
+   SET
+      [Admission_Class] = ?
+      ,[Admission_Level] = ?
+      ,[Admission_Flag_Emergency] =?
+      ,[Description] = ?
+ WHERE  [Admission_Type] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie la page de codes de la colonne à utiliser lorsque les informations de page de codes ne sont pas disponibles à partir de la source de données."
+                  name="DefaultCodePage">1252</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Alim_Dim_TypeAdmission\Commande OLE DB.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[SANA\SQLEXPRESS01.DW_HealthCare]"
+                  connectionManagerRefId="Package.ConnectionManagers[SANA\SQLEXPRESS01.DW_HealthCare]"
+                  description="Connexion OLE DB en cours d'exécution utilisée pour accéder à la base de données."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Alim_Dim_TypeAdmission\Commande OLE DB.Inputs[Entrée de commande OLE DB]"
+                  errorOrTruncationOperation="Exécution de commande"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="Entrée de commande OLE DB">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Alim_Dim_TypeAdmission\Commande OLE DB.Inputs[Entrée de commande OLE DB].Columns[Admission_Type]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="Admission_Type"
+                      externalMetadataColumnId="Package\Alim_Dim_TypeAdmission\Commande OLE DB.Inputs[Entrée de commande OLE DB].ExternalColumns[Param_4]"
+                      lineageId="Package\Alim_Dim_TypeAdmission\Recherche.Outputs[Sortie de recherche avec correspondance].Columns[Admission_Type]" />
+                    <inputColumn
+                      refId="Package\Alim_Dim_TypeAdmission\Commande OLE DB.Inputs[Entrée de commande OLE DB].Columns[Copy of Admission_Level]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="7"
+                      cachedName="Copy of Admission_Level"
+                      externalMetadataColumnId="Package\Alim_Dim_TypeAdmission\Commande OLE DB.Inputs[Entrée de commande OLE DB].ExternalColumns[Param_1]"
+                      lineageId="Package\Alim_Dim_TypeAdmission\Conversion de données.Outputs[Sortie de conversion de données].Columns[Copy of Admission_Level]" />
+                    <inputColumn
+                      refId="Package\Alim_Dim_TypeAdmission\Commande OLE DB.Inputs[Entrée de commande OLE DB].Columns[Copy of Admission_Class]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="11"
+                      cachedName="Copy of Admission_Class"
+                      externalMetadataColumnId="Package\Alim_Dim_TypeAdmission\Commande OLE DB.Inputs[Entrée de commande OLE DB].ExternalColumns[Param_0]"
+                      lineageId="Package\Alim_Dim_TypeAdmission\Conversion de données.Outputs[Sortie de conversion de données].Columns[Copy of Admission_Class]" />
+                    <inputColumn
+                      refId="Package\Alim_Dim_TypeAdmission\Commande OLE DB.Inputs[Entrée de commande OLE DB].Columns[Copy of Admission_Flag_Emergency]"
+                      cachedDataType="bool"
+                      cachedName="Copy of Admission_Flag_Emergency"
+                      externalMetadataColumnId="Package\Alim_Dim_TypeAdmission\Commande OLE DB.Inputs[Entrée de commande OLE DB].ExternalColumns[Param_2]"
+                      lineageId="Package\Alim_Dim_TypeAdmission\Conversion de données.Outputs[Sortie de conversion de données].Columns[Copy of Admission_Flag_Emergency]" />
+                    <inputColumn
+                      refId="Package\Alim_Dim_TypeAdmission\Commande OLE DB.Inputs[Entrée de commande OLE DB].Columns[Copy of Description]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="36"
+                      cachedName="Copy of Description"
+                      externalMetadataColumnId="Package\Alim_Dim_TypeAdmission\Commande OLE DB.Inputs[Entrée de commande OLE DB].ExternalColumns[Param_3]"
+                      lineageId="Package\Alim_Dim_TypeAdmission\Conversion de données.Outputs[Sortie de conversion de données].Columns[Copy of Description]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Alim_Dim_TypeAdmission\Commande OLE DB.Inputs[Entrée de commande OLE DB].ExternalColumns[Param_0]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="Param_0">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Informations de paramètre.  Correspond aux valeurs DBPARAMFLAGSENUM OLE DB."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Alim_Dim_TypeAdmission\Commande OLE DB.Inputs[Entrée de commande OLE DB].ExternalColumns[Param_1]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Param_1">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Informations de paramètre.  Correspond aux valeurs DBPARAMFLAGSENUM OLE DB."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Alim_Dim_TypeAdmission\Commande OLE DB.Inputs[Entrée de commande OLE DB].ExternalColumns[Param_2]"
+                      dataType="bool"
+                      name="Param_2">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Informations de paramètre.  Correspond aux valeurs DBPARAMFLAGSENUM OLE DB."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Alim_Dim_TypeAdmission\Commande OLE DB.Inputs[Entrée de commande OLE DB].ExternalColumns[Param_3]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="Param_3">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Informations de paramètre.  Correspond aux valeurs DBPARAMFLAGSENUM OLE DB."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Alim_Dim_TypeAdmission\Commande OLE DB.Inputs[Entrée de commande OLE DB].ExternalColumns[Param_4]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="Param_4">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Informations de paramètre.  Correspond aux valeurs DBPARAMFLAGSENUM OLE DB."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Alim_Dim_TypeAdmission\Commande OLE DB.Outputs[Sortie de commande OLE DB]"
+                  exclusionGroup="1"
+                  name="Sortie de commande OLE DB"
+                  synchronousInputId="Package\Alim_Dim_TypeAdmission\Commande OLE DB.Inputs[Entrée de commande OLE DB]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Alim_Dim_TypeAdmission\Commande OLE DB.Outputs[Sortie d'erreur de commande OLE DB]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Sortie d'erreur de commande OLE DB"
+                  synchronousInputId="Package\Alim_Dim_TypeAdmission\Commande OLE DB.Inputs[Entrée de commande OLE DB]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Alim_Dim_TypeAdmission\Commande OLE DB.Outputs[Sortie d'erreur de commande OLE DB].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Alim_Dim_TypeAdmission\Commande OLE DB.Outputs[Sortie d'erreur de commande OLE DB].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Alim_Dim_TypeAdmission\Commande OLE DB.Outputs[Sortie d'erreur de commande OLE DB].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Alim_Dim_TypeAdmission\Commande OLE DB.Outputs[Sortie d'erreur de commande OLE DB].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Alim_Dim_TypeAdmission\Conversion de données"
+              componentClassID="Microsoft.DataConvert"
+              contactInfo="Conversion de données;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Tous droits réservés; http://www.microsoft.com/sql/support;0"
+              description="Conversion de données"
+              name="Conversion de données"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Alim_Dim_TypeAdmission\Conversion de données.Inputs[Entrée de conversion de données]"
+                  name="Entrée de conversion de données">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Alim_Dim_TypeAdmission\Conversion de données.Inputs[Entrée de conversion de données].Columns[Admission_Class]"
+                      cachedDataType="wstr"
+                      cachedLength="11"
+                      cachedName="Admission_Class"
+                      lineageId="Package\Alim_Dim_TypeAdmission\Trier.Outputs[Sortie de tri].Columns[Admission_Class]" />
+                    <inputColumn
+                      refId="Package\Alim_Dim_TypeAdmission\Conversion de données.Inputs[Entrée de conversion de données].Columns[Admission_Level]"
+                      cachedDataType="wstr"
+                      cachedLength="7"
+                      cachedName="Admission_Level"
+                      lineageId="Package\Alim_Dim_TypeAdmission\Trier.Outputs[Sortie de tri].Columns[Admission_Level]" />
+                    <inputColumn
+                      refId="Package\Alim_Dim_TypeAdmission\Conversion de données.Inputs[Entrée de conversion de données].Columns[Admission_Flag_Emergency]"
+                      cachedDataType="i4"
+                      cachedName="Admission_Flag_Emergency"
+                      lineageId="Package\Alim_Dim_TypeAdmission\Trier.Outputs[Sortie de tri].Columns[Admission_Flag_Emergency]" />
+                    <inputColumn
+                      refId="Package\Alim_Dim_TypeAdmission\Conversion de données.Inputs[Entrée de conversion de données].Columns[Description]"
+                      cachedDataType="wstr"
+                      cachedLength="36"
+                      cachedName="Description"
+                      lineageId="Package\Alim_Dim_TypeAdmission\Trier.Outputs[Sortie de tri].Columns[Description]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Alim_Dim_TypeAdmission\Conversion de données.Outputs[Sortie de conversion de données]"
+                  exclusionGroup="1"
+                  name="Sortie de conversion de données"
+                  synchronousInputId="Package\Alim_Dim_TypeAdmission\Conversion de données.Inputs[Entrée de conversion de données]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Alim_Dim_TypeAdmission\Conversion de données.Outputs[Sortie de conversion de données].Columns[Copy of Admission_Class]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="11"
+                      lineageId="Package\Alim_Dim_TypeAdmission\Conversion de données.Outputs[Sortie de conversion de données].Columns[Copy of Admission_Class]"
+                      name="Copy of Admission_Class"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Spécifie la colonne d'entrée utilisée comme source de données pour la conversion."
+                          name="SourceInputColumnLineageID">#{Package\Alim_Dim_TypeAdmission\Trier.Outputs[Sortie de tri].Columns[Admission_Class]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indique si la colonne utilise les routines d'analyse les plus rapides, avec des paramètres régionaux neutres."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Alim_Dim_TypeAdmission\Conversion de données.Outputs[Sortie de conversion de données].Columns[Copy of Admission_Level]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="7"
+                      lineageId="Package\Alim_Dim_TypeAdmission\Conversion de données.Outputs[Sortie de conversion de données].Columns[Copy of Admission_Level]"
+                      name="Copy of Admission_Level"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Spécifie la colonne d'entrée utilisée comme source de données pour la conversion."
+                          name="SourceInputColumnLineageID">#{Package\Alim_Dim_TypeAdmission\Trier.Outputs[Sortie de tri].Columns[Admission_Level]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indique si la colonne utilise les routines d'analyse les plus rapides, avec des paramètres régionaux neutres."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Alim_Dim_TypeAdmission\Conversion de données.Outputs[Sortie de conversion de données].Columns[Copy of Admission_Flag_Emergency]"
+                      dataType="bool"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Alim_Dim_TypeAdmission\Conversion de données.Outputs[Sortie de conversion de données].Columns[Copy of Admission_Flag_Emergency]"
+                      name="Copy of Admission_Flag_Emergency"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Spécifie la colonne d'entrée utilisée comme source de données pour la conversion."
+                          name="SourceInputColumnLineageID">#{Package\Alim_Dim_TypeAdmission\Trier.Outputs[Sortie de tri].Columns[Admission_Flag_Emergency]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indique si la colonne utilise les routines d'analyse les plus rapides, avec des paramètres régionaux neutres."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Alim_Dim_TypeAdmission\Conversion de données.Outputs[Sortie de conversion de données].Columns[Copy of Description]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="36"
+                      lineageId="Package\Alim_Dim_TypeAdmission\Conversion de données.Outputs[Sortie de conversion de données].Columns[Copy of Description]"
+                      name="Copy of Description"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Spécifie la colonne d'entrée utilisée comme source de données pour la conversion."
+                          name="SourceInputColumnLineageID">#{Package\Alim_Dim_TypeAdmission\Trier.Outputs[Sortie de tri].Columns[Description]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indique si la colonne utilise les routines d'analyse les plus rapides, avec des paramètres régionaux neutres."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Alim_Dim_TypeAdmission\Conversion de données.Outputs[Sortie d'erreur de conversion de données]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Sortie d'erreur de conversion de données"
+                  synchronousInputId="Package\Alim_Dim_TypeAdmission\Conversion de données.Inputs[Entrée de conversion de données]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Alim_Dim_TypeAdmission\Conversion de données.Outputs[Sortie d'erreur de conversion de données].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Alim_Dim_TypeAdmission\Conversion de données.Outputs[Sortie d'erreur de conversion de données].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Alim_Dim_TypeAdmission\Conversion de données.Outputs[Sortie d'erreur de conversion de données].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Alim_Dim_TypeAdmission\Conversion de données.Outputs[Sortie d'erreur de conversion de données].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Alim_Dim_TypeAdmission\Destination OLE DB"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="Destination OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Tous droits réservés; http://www.microsoft.com/sql/support;4"
+              description="Destination OLE DB"
+              name="Destination OLE DB"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Nombre de secondes avant l'expiration d'une commande.  Une valeur égale à 0 indique un délai d'expiration infini."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Spécifie le nom de l'objet de base de données utilisé pour ouvrir un ensemble de lignes."
+                  name="OpenRowset">[dbo].[Dim_TypeAdmission]</property>
+                <property
+                  dataType="System.String"
+                  description="Spécifie la variable contenant le nom de l'objet de base de données utilisé pour ouvrir un ensemble de lignes."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="Commande SQL à exécuter."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie la page de codes de la colonne à utiliser lorsque les informations de page de codes ne sont pas disponibles à partir de la source de données."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Force l'utilisation de la valeur de propriété DefaultCodePage lors de la description des données caractères."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie le mode utilisé pour accéder à la base de données."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indique si les valeurs fournies pour les colonnes d'identité seront copiées à la destination. Si la valeur est définie à False, les valeurs des colonnes d'identité seront générées automatiquement à la destination. Ne s'applique que si le chargement rapide est activé."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indique si les colonnes contenant la valeur NULL auront cette valeur NULL copiée à la destination. Si la valeur est définie à False, les colonnes contenant la valeur NULL auront leurs valeurs par défaut insérées à la destination. Ne s'applique que si le chargement rapide est activé."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Spécifie les options à utiliser avec le chargement rapide.  Ne s'applique que si le chargement rapide est activé."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie quand les validations sont émises pendant l'insertion des données.  Une valeur égale à 0 spécifie qu'une validation sera émise à la fin de l'insertion des données.  Ne s'applique que si le chargement rapide est activé."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Alim_Dim_TypeAdmission\Destination OLE DB.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[SANA\SQLEXPRESS01.DW_HealthCare]"
+                  connectionManagerRefId="Package.ConnectionManagers[SANA\SQLEXPRESS01.DW_HealthCare]"
+                  description="Connexion OLE DB en cours d'exécution utilisée pour accéder à la base de données."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Alim_Dim_TypeAdmission\Destination OLE DB.Inputs[Entrée de destination OLE DB]"
+                  errorOrTruncationOperation="Insérer"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="Entrée de destination OLE DB">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Alim_Dim_TypeAdmission\Destination OLE DB.Inputs[Entrée de destination OLE DB].Columns[admission_type]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="admission_type"
+                      cachedSortKeyPosition="1"
+                      externalMetadataColumnId="Package\Alim_Dim_TypeAdmission\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[Admission_Type]"
+                      lineageId="Package\Alim_Dim_TypeAdmission\Trier.Outputs[Sortie de tri].Columns[admission_type]" />
+                    <inputColumn
+                      refId="Package\Alim_Dim_TypeAdmission\Destination OLE DB.Inputs[Entrée de destination OLE DB].Columns[Copy of Admission_Level]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="7"
+                      cachedName="Copy of Admission_Level"
+                      externalMetadataColumnId="Package\Alim_Dim_TypeAdmission\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[Admission_Level]"
+                      lineageId="Package\Alim_Dim_TypeAdmission\Conversion de données.Outputs[Sortie de conversion de données].Columns[Copy of Admission_Level]" />
+                    <inputColumn
+                      refId="Package\Alim_Dim_TypeAdmission\Destination OLE DB.Inputs[Entrée de destination OLE DB].Columns[Copy of Admission_Class]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="11"
+                      cachedName="Copy of Admission_Class"
+                      externalMetadataColumnId="Package\Alim_Dim_TypeAdmission\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[Admission_Class]"
+                      lineageId="Package\Alim_Dim_TypeAdmission\Conversion de données.Outputs[Sortie de conversion de données].Columns[Copy of Admission_Class]" />
+                    <inputColumn
+                      refId="Package\Alim_Dim_TypeAdmission\Destination OLE DB.Inputs[Entrée de destination OLE DB].Columns[Copy of Admission_Flag_Emergency]"
+                      cachedDataType="bool"
+                      cachedName="Copy of Admission_Flag_Emergency"
+                      externalMetadataColumnId="Package\Alim_Dim_TypeAdmission\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[Admission_Flag_Emergency]"
+                      lineageId="Package\Alim_Dim_TypeAdmission\Conversion de données.Outputs[Sortie de conversion de données].Columns[Copy of Admission_Flag_Emergency]" />
+                    <inputColumn
+                      refId="Package\Alim_Dim_TypeAdmission\Destination OLE DB.Inputs[Entrée de destination OLE DB].Columns[Copy of Description]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="36"
+                      cachedName="Copy of Description"
+                      externalMetadataColumnId="Package\Alim_Dim_TypeAdmission\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[Description]"
+                      lineageId="Package\Alim_Dim_TypeAdmission\Conversion de données.Outputs[Sortie de conversion de données].Columns[Copy of Description]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Alim_Dim_TypeAdmission\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[TypeAdmission_PK]"
+                      dataType="i4"
+                      name="TypeAdmission_PK" />
+                    <externalMetadataColumn
+                      refId="Package\Alim_Dim_TypeAdmission\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[Admission_Type]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="Admission_Type" />
+                    <externalMetadataColumn
+                      refId="Package\Alim_Dim_TypeAdmission\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[Admission_Class]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="Admission_Class" />
+                    <externalMetadataColumn
+                      refId="Package\Alim_Dim_TypeAdmission\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[Admission_Level]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Admission_Level" />
+                    <externalMetadataColumn
+                      refId="Package\Alim_Dim_TypeAdmission\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[Admission_Flag_Emergency]"
+                      dataType="bool"
+                      name="Admission_Flag_Emergency" />
+                    <externalMetadataColumn
+                      refId="Package\Alim_Dim_TypeAdmission\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[Description]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="Description" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Alim_Dim_TypeAdmission\Destination OLE DB.Outputs[Sortie d'erreur de destination OLE DB]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Sortie d'erreur de destination OLE DB"
+                  synchronousInputId="Package\Alim_Dim_TypeAdmission\Destination OLE DB.Inputs[Entrée de destination OLE DB]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Alim_Dim_TypeAdmission\Destination OLE DB.Outputs[Sortie d'erreur de destination OLE DB].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Alim_Dim_TypeAdmission\Destination OLE DB.Outputs[Sortie d'erreur de destination OLE DB].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Alim_Dim_TypeAdmission\Destination OLE DB.Outputs[Sortie d'erreur de destination OLE DB].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Alim_Dim_TypeAdmission\Destination OLE DB.Outputs[Sortie d'erreur de destination OLE DB].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Alim_Dim_TypeAdmission\Recherche"
+              componentClassID="Microsoft.Lookup"
+              contactInfo="Recherche;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Tous droits réservés; http://www.microsoft.com/sql/support;6"
+              description="Joint des colonnes supplémentaires au flux de données en recherchant des valeurs dans une table. Par exemple, joignez la colonne 'id employé' à la table des employés afin d'obtenir la 'date d'embauche' et le 'nom de l'employé'. Nous recommandons cette transformation lorsque la table de recherche peut être stockée en mémoire."
+              name="Recherche"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Spécifie l'instruction SQL qui génère la table de correspondance."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from [dbo].[Dim_TypeAdmission]</property>
+                <property
+                  dataType="System.String"
+                  description="Spécifie une instruction SQL qui utilise des paramètres pour générer la table de correspondance."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (select * from [dbo].[Dim_TypeAdmission]) [refTable]
+where [refTable].[Admission_Type] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie le type de connexion utilisé pour accéder au dataset de référence."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie le type de cache de la table de correspondance."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie comment la transformation de recherche gère les lignes sans entrées correspondantes dans le jeu de données de référence."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie le pourcentage du cache alloué aux lignes sans entrées correspondantes dans le dataset de référence."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Utilisation maximale de la mémoire pour le cache de référence sur une plateforme 32 bits."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Utilisation maximale de la mémoire pour le cache de référence sur une plateforme 64 bits."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indique si les métadonnées sont à référencer en format XML."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="TypeAdmission_PK" dataType="DT_STR" length="50" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="Admission_Type" dataType="DT_STR" length="100" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="Admission_Class" dataType="DT_STR" length="255" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="Admission_Level" dataType="DT_STR" length="50" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="Admission_Flag_Emergency" dataType="DT_BOOL" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Description" dataType="DT_STR" length="255" precision="0" scale="0" codePage="1252"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Spécifie la liste d'identificateurs de traçabilité se mappant aux paramètres utilisés dans la propriété SQLCommand par l'instruction SQL. Les entrées dans la liste sont séparées par des points-virgules."
+                  name="ParameterMap">#{Package\Alim_Dim_TypeAdmission\Trier.Outputs[Sortie de tri].Columns[admission_type]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie la page de codes de la colonne à utiliser lorsque les informations de page de codes ne sont pas disponibles à partir de la source de données."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Détermine si les clés dupliquées dans les données de référence doivent être traitées en tant qu'erreurs lorsque le mode Cache complet est utilisé."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Alim_Dim_TypeAdmission\Recherche.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[SANA\SQLEXPRESS01.DW_HealthCare]"
+                  connectionManagerRefId="Package.ConnectionManagers[SANA\SQLEXPRESS01.DW_HealthCare]"
+                  description="Gestionnaire de connexions utilisé pour accéder aux données de correspondance."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Alim_Dim_TypeAdmission\Recherche.Inputs[Entrée de recherche]"
+                  name="Entrée de recherche">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Alim_Dim_TypeAdmission\Recherche.Inputs[Entrée de recherche].Columns[admission_type]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="admission_type"
+                      cachedSortKeyPosition="1"
+                      lineageId="Package\Alim_Dim_TypeAdmission\Trier.Outputs[Sortie de tri].Columns[admission_type]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Spécifie la colonne de la table de référence sur laquelle une colonne se lie."
+                          name="JoinToReferenceColumn">Admission_Type</property>
+                        <property
+                          dataType="System.Null"
+                          description="Spécifie la colonne de la table de référence à partir de laquelle une colonne est copiée."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Alim_Dim_TypeAdmission\Recherche.Outputs[Sortie de recherche avec correspondance]"
+                  errorOrTruncationOperation="Recherche"
+                  exclusionGroup="1"
+                  name="Sortie de recherche avec correspondance"
+                  synchronousInputId="Package\Alim_Dim_TypeAdmission\Recherche.Inputs[Entrée de recherche]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Alim_Dim_TypeAdmission\Recherche.Outputs[Sortie de recherche avec correspondance].Columns[TypeAdmission_PK]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Copie de colonnes"
+                      length="50"
+                      lineageId="Package\Alim_Dim_TypeAdmission\Recherche.Outputs[Sortie de recherche avec correspondance].Columns[TypeAdmission_PK]"
+                      name="TypeAdmission_PK"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Spécifie la colonne de la table de référence à partir de laquelle une colonne est copiée."
+                          name="CopyFromReferenceColumn">TypeAdmission_PK</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Alim_Dim_TypeAdmission\Recherche.Outputs[Sortie de recherche avec correspondance].Columns[Admission_Type]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Copie de colonnes"
+                      length="100"
+                      lineageId="Package\Alim_Dim_TypeAdmission\Recherche.Outputs[Sortie de recherche avec correspondance].Columns[Admission_Type]"
+                      name="Admission_Type"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Spécifie la colonne de la table de référence à partir de laquelle une colonne est copiée."
+                          name="CopyFromReferenceColumn">Admission_Type</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Alim_Dim_TypeAdmission\Recherche.Outputs[Sortie de recherche avec correspondance].Columns[Admission_Class]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Copie de colonnes"
+                      length="255"
+                      lineageId="Package\Alim_Dim_TypeAdmission\Recherche.Outputs[Sortie de recherche avec correspondance].Columns[Admission_Class]"
+                      name="Admission_Class"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Spécifie la colonne de la table de référence à partir de laquelle une colonne est copiée."
+                          name="CopyFromReferenceColumn">Admission_Class</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Alim_Dim_TypeAdmission\Recherche.Outputs[Sortie de recherche avec correspondance].Columns[Admission_Level]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Copie de colonnes"
+                      length="50"
+                      lineageId="Package\Alim_Dim_TypeAdmission\Recherche.Outputs[Sortie de recherche avec correspondance].Columns[Admission_Level]"
+                      name="Admission_Level"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Spécifie la colonne de la table de référence à partir de laquelle une colonne est copiée."
+                          name="CopyFromReferenceColumn">Admission_Level</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Alim_Dim_TypeAdmission\Recherche.Outputs[Sortie de recherche avec correspondance].Columns[Admission_Flag_Emergency]"
+                      dataType="bool"
+                      errorOrTruncationOperation="Copie de colonnes"
+                      lineageId="Package\Alim_Dim_TypeAdmission\Recherche.Outputs[Sortie de recherche avec correspondance].Columns[Admission_Flag_Emergency]"
+                      name="Admission_Flag_Emergency"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Spécifie la colonne de la table de référence à partir de laquelle une colonne est copiée."
+                          name="CopyFromReferenceColumn">Admission_Flag_Emergency</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Alim_Dim_TypeAdmission\Recherche.Outputs[Sortie de recherche avec correspondance].Columns[Description]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Copie de colonnes"
+                      length="255"
+                      lineageId="Package\Alim_Dim_TypeAdmission\Recherche.Outputs[Sortie de recherche avec correspondance].Columns[Description]"
+                      name="Description"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Spécifie la colonne de la table de référence à partir de laquelle une colonne est copiée."
+                          name="CopyFromReferenceColumn">Description</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Alim_Dim_TypeAdmission\Recherche.Outputs[Sortie de recherche sans correspondance]"
+                  description="Sortie de recherche gérant les lignes sans entrées correspondantes dans le dataset de référence. Utilisez cette sortie lorsque la propriété NoMatchBehavior a la valeur « Envoyez les lignes sans entrées correspondantes dans la sortie sans correspondance »."
+                  exclusionGroup="1"
+                  name="Sortie de recherche sans correspondance"
+                  synchronousInputId="Package\Alim_Dim_TypeAdmission\Recherche.Inputs[Entrée de recherche]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Alim_Dim_TypeAdmission\Recherche.Outputs[Sortie d'erreur de recherche]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Sortie d'erreur de recherche"
+                  synchronousInputId="Package\Alim_Dim_TypeAdmission\Recherche.Inputs[Entrée de recherche]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Alim_Dim_TypeAdmission\Recherche.Outputs[Sortie d'erreur de recherche].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Alim_Dim_TypeAdmission\Recherche.Outputs[Sortie d'erreur de recherche].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Alim_Dim_TypeAdmission\Recherche.Outputs[Sortie d'erreur de recherche].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Alim_Dim_TypeAdmission\Recherche.Outputs[Sortie d'erreur de recherche].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Alim_Dim_TypeAdmission\Source OLE DB"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="Source OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Tous droits réservés; http://www.microsoft.com/sql/support;7"
+              description="Source OLE DB"
+              name="Source OLE DB"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Nombre de secondes avant l'expiration d'une commande.  Une valeur égale à 0 indique un délai d'expiration infini."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Spécifie le nom de l'objet de base de données utilisé pour ouvrir un ensemble de lignes."
+                  name="OpenRowset">[dbo].[ADMISSIONS_SA]</property>
+                <property
+                  dataType="System.String"
+                  description="Spécifie la variable contenant le nom de l'objet de base de données utilisé pour ouvrir un ensemble de lignes."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="Commande SQL à exécuter."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="Variable contenant la commande SQL à exécuter."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie la page de codes de la colonne à utiliser lorsque les informations de page de codes ne sont pas disponibles à partir de la source de données."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Force l'utilisation de la valeur de propriété DefaultCodePage lors de la description des données caractères."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie le mode utilisé pour accéder à la base de données."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="Mappages entre les paramètres de la commande SQL et les variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Alim_Dim_TypeAdmission\Source OLE DB.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[SANA\SQLEXPRESS01.HealthCare_SA;]"
+                  connectionManagerRefId="Package.ConnectionManagers[SANA\SQLEXPRESS01.HealthCare_SA;]"
+                  description="Connexion OLE DB en cours d'exécution utilisée pour accéder à la base de données."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Alim_Dim_TypeAdmission\Source OLE DB.Outputs[Sortie de source OLE DB]"
+                  name="Sortie de source OLE DB">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Alim_Dim_TypeAdmission\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[admission_type]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Alim_Dim_TypeAdmission\Source OLE DB.Outputs[Sortie de source OLE DB].ExternalColumns[admission_type]"
+                      length="50"
+                      lineageId="Package\Alim_Dim_TypeAdmission\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[admission_type]"
+                      name="admission_type"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Alim_Dim_TypeAdmission\Source OLE DB.Outputs[Sortie de source OLE DB].ExternalColumns[row_id]"
+                      dataType="i4"
+                      name="row_id" />
+                    <externalMetadataColumn
+                      refId="Package\Alim_Dim_TypeAdmission\Source OLE DB.Outputs[Sortie de source OLE DB].ExternalColumns[subject_id]"
+                      dataType="i4"
+                      name="subject_id" />
+                    <externalMetadataColumn
+                      refId="Package\Alim_Dim_TypeAdmission\Source OLE DB.Outputs[Sortie de source OLE DB].ExternalColumns[hadm_id]"
+                      dataType="i4"
+                      name="hadm_id" />
+                    <externalMetadataColumn
+                      refId="Package\Alim_Dim_TypeAdmission\Source OLE DB.Outputs[Sortie de source OLE DB].ExternalColumns[admittime]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="admittime" />
+                    <externalMetadataColumn
+                      refId="Package\Alim_Dim_TypeAdmission\Source OLE DB.Outputs[Sortie de source OLE DB].ExternalColumns[dischtime]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="dischtime" />
+                    <externalMetadataColumn
+                      refId="Package\Alim_Dim_TypeAdmission\Source OLE DB.Outputs[Sortie de source OLE DB].ExternalColumns[deathtime]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="deathtime" />
+                    <externalMetadataColumn
+                      refId="Package\Alim_Dim_TypeAdmission\Source OLE DB.Outputs[Sortie de source OLE DB].ExternalColumns[admission_type]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="admission_type" />
+                    <externalMetadataColumn
+                      refId="Package\Alim_Dim_TypeAdmission\Source OLE DB.Outputs[Sortie de source OLE DB].ExternalColumns[admission_location]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="admission_location" />
+                    <externalMetadataColumn
+                      refId="Package\Alim_Dim_TypeAdmission\Source OLE DB.Outputs[Sortie de source OLE DB].ExternalColumns[discharge_location]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="discharge_location" />
+                    <externalMetadataColumn
+                      refId="Package\Alim_Dim_TypeAdmission\Source OLE DB.Outputs[Sortie de source OLE DB].ExternalColumns[insurance]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="insurance" />
+                    <externalMetadataColumn
+                      refId="Package\Alim_Dim_TypeAdmission\Source OLE DB.Outputs[Sortie de source OLE DB].ExternalColumns[language]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      name="language" />
+                    <externalMetadataColumn
+                      refId="Package\Alim_Dim_TypeAdmission\Source OLE DB.Outputs[Sortie de source OLE DB].ExternalColumns[religion]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="religion" />
+                    <externalMetadataColumn
+                      refId="Package\Alim_Dim_TypeAdmission\Source OLE DB.Outputs[Sortie de source OLE DB].ExternalColumns[marital_status]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="marital_status" />
+                    <externalMetadataColumn
+                      refId="Package\Alim_Dim_TypeAdmission\Source OLE DB.Outputs[Sortie de source OLE DB].ExternalColumns[ethnicity]"
+                      codePage="1252"
+                      dataType="str"
+                      length="200"
+                      name="ethnicity" />
+                    <externalMetadataColumn
+                      refId="Package\Alim_Dim_TypeAdmission\Source OLE DB.Outputs[Sortie de source OLE DB].ExternalColumns[edregtime]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="edregtime" />
+                    <externalMetadataColumn
+                      refId="Package\Alim_Dim_TypeAdmission\Source OLE DB.Outputs[Sortie de source OLE DB].ExternalColumns[edouttime]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="edouttime" />
+                    <externalMetadataColumn
+                      refId="Package\Alim_Dim_TypeAdmission\Source OLE DB.Outputs[Sortie de source OLE DB].ExternalColumns[diagnosis]"
+                      codePage="1252"
+                      dataType="str"
+                      length="150"
+                      name="diagnosis" />
+                    <externalMetadataColumn
+                      refId="Package\Alim_Dim_TypeAdmission\Source OLE DB.Outputs[Sortie de source OLE DB].ExternalColumns[hospital_expire_flag]"
+                      dataType="bool"
+                      name="hospital_expire_flag" />
+                    <externalMetadataColumn
+                      refId="Package\Alim_Dim_TypeAdmission\Source OLE DB.Outputs[Sortie de source OLE DB].ExternalColumns[has_chartevents_data]"
+                      dataType="bool"
+                      name="has_chartevents_data" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Alim_Dim_TypeAdmission\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB]"
+                  isErrorOut="true"
+                  name="Sortie d'erreur de source OLE DB">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Alim_Dim_TypeAdmission\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB].Columns[admission_type]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Alim_Dim_TypeAdmission\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB].Columns[admission_type]"
+                      name="admission_type" />
+                    <outputColumn
+                      refId="Package\Alim_Dim_TypeAdmission\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Alim_Dim_TypeAdmission\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Alim_Dim_TypeAdmission\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Alim_Dim_TypeAdmission\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Alim_Dim_TypeAdmission\Trier"
+              componentClassID="Microsoft.Sort"
+              contactInfo="Trier;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Tous droits réservés; http://www.microsoft.com/sql/support;1"
+              description="Trie les données d'entrée en ordre croissant ou décroissant lorsque le tri ne peut pas être effectué à la source. Par exemple, triez les données de vente par 'id de client' avant leur enregistrement dans un fichier plat et leur diffusion dans un autre service. Remarque : nous ne recommandons pas cette transformation dans le cas de flux de données volumineux."
+              name="Trier"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Indique si la transformation de tri supprime les lignes comportant des valeurs de tri en double."
+                  name="EliminateDuplicates">true</property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie le nombre maximal de threads à utiliser pour le tri."
+                  expressionType="Notify"
+                  name="MaximumThreads">-1</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\Alim_Dim_TypeAdmission\Trier.Inputs[Entrée de tri]"
+                  name="Entrée de tri">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Alim_Dim_TypeAdmission\Trier.Inputs[Entrée de tri].Columns[admission_type]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="admission_type"
+                      lineageId="Package\Alim_Dim_TypeAdmission\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[admission_type]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Spécifie les options de comparaison pour les données caractères."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Spécifie l'ordre de tri de la colonne."
+                          name="NewSortKeyPosition">1</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Alim_Dim_TypeAdmission\Trier.Inputs[Entrée de tri].Columns[Admission_Class]"
+                      cachedDataType="wstr"
+                      cachedLength="11"
+                      cachedName="Admission_Class"
+                      lineageId="Package\Alim_Dim_TypeAdmission\Colonne dérivée.Outputs[Sortie de colonne dérivée].Columns[Admission_Class]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Spécifie les options de comparaison pour les données caractères."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Spécifie l'ordre de tri de la colonne."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Alim_Dim_TypeAdmission\Trier.Inputs[Entrée de tri].Columns[Admission_Level]"
+                      cachedDataType="wstr"
+                      cachedLength="7"
+                      cachedName="Admission_Level"
+                      lineageId="Package\Alim_Dim_TypeAdmission\Colonne dérivée.Outputs[Sortie de colonne dérivée].Columns[Admission_Level]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Spécifie les options de comparaison pour les données caractères."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Spécifie l'ordre de tri de la colonne."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Alim_Dim_TypeAdmission\Trier.Inputs[Entrée de tri].Columns[Admission_Flag_Emergency]"
+                      cachedDataType="i4"
+                      cachedName="Admission_Flag_Emergency"
+                      lineageId="Package\Alim_Dim_TypeAdmission\Colonne dérivée.Outputs[Sortie de colonne dérivée].Columns[Admission_Flag_Emergency]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Spécifie les options de comparaison pour les données caractères."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Spécifie l'ordre de tri de la colonne."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Alim_Dim_TypeAdmission\Trier.Inputs[Entrée de tri].Columns[Description]"
+                      cachedDataType="wstr"
+                      cachedLength="36"
+                      cachedName="Description"
+                      lineageId="Package\Alim_Dim_TypeAdmission\Colonne dérivée.Outputs[Sortie de colonne dérivée].Columns[Description]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Spécifie les options de comparaison pour les données caractères."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Spécifie l'ordre de tri de la colonne."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Alim_Dim_TypeAdmission\Trier.Outputs[Sortie de tri]"
+                  isSorted="true"
+                  name="Sortie de tri">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Alim_Dim_TypeAdmission\Trier.Outputs[Sortie de tri].Columns[admission_type]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Alim_Dim_TypeAdmission\Trier.Outputs[Sortie de tri].Columns[admission_type]"
+                      name="admission_type"
+                      sortKeyPosition="1">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Spécifie l'identificateur de traçabilité de la colonne d'entrée associé à cette colonne de sortie."
+                          name="SortColumnId">#{Package\Alim_Dim_TypeAdmission\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[admission_type]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Alim_Dim_TypeAdmission\Trier.Outputs[Sortie de tri].Columns[Admission_Class]"
+                      dataType="wstr"
+                      length="11"
+                      lineageId="Package\Alim_Dim_TypeAdmission\Trier.Outputs[Sortie de tri].Columns[Admission_Class]"
+                      name="Admission_Class">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Spécifie l'identificateur de traçabilité de la colonne d'entrée associé à cette colonne de sortie."
+                          name="SortColumnId">#{Package\Alim_Dim_TypeAdmission\Colonne dérivée.Outputs[Sortie de colonne dérivée].Columns[Admission_Class]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Alim_Dim_TypeAdmission\Trier.Outputs[Sortie de tri].Columns[Admission_Level]"
+                      dataType="wstr"
+                      length="7"
+                      lineageId="Package\Alim_Dim_TypeAdmission\Trier.Outputs[Sortie de tri].Columns[Admission_Level]"
+                      name="Admission_Level">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Spécifie l'identificateur de traçabilité de la colonne d'entrée associé à cette colonne de sortie."
+                          name="SortColumnId">#{Package\Alim_Dim_TypeAdmission\Colonne dérivée.Outputs[Sortie de colonne dérivée].Columns[Admission_Level]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Alim_Dim_TypeAdmission\Trier.Outputs[Sortie de tri].Columns[Admission_Flag_Emergency]"
+                      dataType="i4"
+                      lineageId="Package\Alim_Dim_TypeAdmission\Trier.Outputs[Sortie de tri].Columns[Admission_Flag_Emergency]"
+                      name="Admission_Flag_Emergency">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Spécifie l'identificateur de traçabilité de la colonne d'entrée associé à cette colonne de sortie."
+                          name="SortColumnId">#{Package\Alim_Dim_TypeAdmission\Colonne dérivée.Outputs[Sortie de colonne dérivée].Columns[Admission_Flag_Emergency]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Alim_Dim_TypeAdmission\Trier.Outputs[Sortie de tri].Columns[Description]"
+                      dataType="wstr"
+                      length="36"
+                      lineageId="Package\Alim_Dim_TypeAdmission\Trier.Outputs[Sortie de tri].Columns[Description]"
+                      name="Description">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Spécifie l'identificateur de traçabilité de la colonne d'entrée associé à cette colonne de sortie."
+                          name="SortColumnId">#{Package\Alim_Dim_TypeAdmission\Colonne dérivée.Outputs[Sortie de colonne dérivée].Columns[Description]}</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Alim_Dim_TypeAdmission.Paths[Sortie de colonne dérivée]"
+              endId="Package\Alim_Dim_TypeAdmission\Trier.Inputs[Entrée de tri]"
+              name="Sortie de colonne dérivée"
+              startId="Package\Alim_Dim_TypeAdmission\Colonne dérivée.Outputs[Sortie de colonne dérivée]" />
+            <path
+              refId="Package\Alim_Dim_TypeAdmission.Paths[Sortie de conversion de données]"
+              endId="Package\Alim_Dim_TypeAdmission\Recherche.Inputs[Entrée de recherche]"
+              name="Sortie de conversion de données"
+              startId="Package\Alim_Dim_TypeAdmission\Conversion de données.Outputs[Sortie de conversion de données]" />
+            <path
+              refId="Package\Alim_Dim_TypeAdmission.Paths[Sortie de recherche avec correspondance]"
+              endId="Package\Alim_Dim_TypeAdmission\Commande OLE DB.Inputs[Entrée de commande OLE DB]"
+              name="Sortie de recherche avec correspondance"
+              startId="Package\Alim_Dim_TypeAdmission\Recherche.Outputs[Sortie de recherche avec correspondance]" />
+            <path
+              refId="Package\Alim_Dim_TypeAdmission.Paths[Sortie de recherche sans correspondance]"
+              endId="Package\Alim_Dim_TypeAdmission\Destination OLE DB.Inputs[Entrée de destination OLE DB]"
+              name="Sortie de recherche sans correspondance"
+              startId="Package\Alim_Dim_TypeAdmission\Recherche.Outputs[Sortie de recherche sans correspondance]" />
+            <path
+              refId="Package\Alim_Dim_TypeAdmission.Paths[Sortie de source OLE DB]"
+              endId="Package\Alim_Dim_TypeAdmission\Colonne dérivée.Inputs[Entrée de colonne dérivée]"
+              name="Sortie de source OLE DB"
+              startId="Package\Alim_Dim_TypeAdmission\Source OLE DB.Outputs[Sortie de source OLE DB]" />
+            <path
+              refId="Package\Alim_Dim_TypeAdmission.Paths[Sortie de tri]"
+              endId="Package\Alim_Dim_TypeAdmission\Conversion de données.Inputs[Entrée de conversion de données]"
+              name="Sortie de tri"
+              startId="Package\Alim_Dim_TypeAdmission\Trier.Outputs[Sortie de tri]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--Cette section CDATA contient des informations sur la disposition du package. Elle comprend des informations telles que les coordonnées (x,y), la largeur et la hauteur.-->
+<!--Si vous modifiez manuellement cette section et commettez une erreur, vous pouvez la supprimer. -->
+<!--Le package pourra toujours se charger normalement, mais les informations de disposition précédente seront perdues et le concepteur réorganisera automatiquement les éléments sur l'aire de conception.-->
+<Objects
+  Version="8">
+  <!--Chaque nœud ci-dessous contiendra des propriétés qui n'affectent pas le comportement d'exécution.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="200,41.6"
+          Id="Package\Alim_Dim_TypeAdmission"
+          TopLeft="267.166652369831,148.499999005596" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Alim_Dim_TypeAdmission">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="100,41.6"
+          Id="Package\Alim_Dim_TypeAdmission\Trier"
+          TopLeft="379.666649501357,182.499999186397" />
+        <NodeLayout
+          Size="188,41.6"
+          Id="Package\Alim_Dim_TypeAdmission\Conversion de données"
+          TopLeft="344.666656331056,262.099999258717" />
+        <NodeLayout
+          Size="128.8,41.6"
+          Id="Package\Alim_Dim_TypeAdmission\Recherche"
+          TopLeft="373.833313208488,334.83333104319" />
+        <NodeLayout
+          Size="152,41.6"
+          Id="Package\Alim_Dim_TypeAdmission\Source OLE DB"
+          TopLeft="356.333314164646,21.9666665521595" />
+        <NodeLayout
+          Size="172.8,41.6"
+          Id="Package\Alim_Dim_TypeAdmission\Commande OLE DB"
+          TopLeft="458.833311842549,419.96666420175" />
+        <NodeLayout
+          Size="154.4,41.6"
+          Id="Package\Alim_Dim_TypeAdmission\Colonne dérivée"
+          TopLeft="356.333315803774,100.499999547998" />
+        <NodeLayout
+          Size="171.2,41.6"
+          Id="Package\Alim_Dim_TypeAdmission\Destination OLE DB"
+          TopLeft="235.499989072482,421.166663984789" />
+        <EdgeLayout
+          Id="Package\Alim_Dim_TypeAdmission.Paths[Sortie de tri]"
+          TopLeft="429.666649501357,224.099999186397">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="9.00000682969863,38.0000000723203"
+              Start="0,0"
+              End="9.00000682969863,30.5000000723203">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,15.0000000361602" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,15.0000000361602"
+                    Point2="0,19.0000000361602"
+                    Point3="4,19.0000000361602" />
+                  <mssgle:LineSegment
+                    End="5.00000682969863,19.0000000361602" />
+                  <mssgle:CubicBezierSegment
+                    Point1="5.00000682969863,19.0000000361602"
+                    Point2="9.00000682969863,19.0000000361602"
+                    Point3="9.00000682969863,23.0000000361602" />
+                  <mssgle:LineSegment
+                    End="9.00000682969863,30.5000000723203" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Alim_Dim_TypeAdmission.Paths[Sortie de source OLE DB]"
+          TopLeft="432.93331498421,63.5666665521595">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,36.9333329958386"
+              Start="0,0"
+              End="0,29.4333329958386">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,29.4333329958386" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Alim_Dim_TypeAdmission.Paths[Sortie de recherche sans correspondance]"
+          TopLeft="438.233313208488,376.43333104319">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-117.133324136006,44.7333329415985"
+              Start="0,0"
+              End="-117.133324136006,37.2333329415985">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,18.3666664707992" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,18.3666664707992"
+                    Point2="0,22.3666664707992"
+                    Point3="-4,22.3666664707992" />
+                  <mssgle:LineSegment
+                    End="-113.133324136006,22.3666664707992" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-113.133324136006,22.3666664707992"
+                    Point2="-117.133324136006,22.3666664707992"
+                    Point3="-117.133324136006,26.3666664707992" />
+                  <mssgle:LineSegment
+                    End="-117.133324136006,37.2333329415985" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-150.068673786753,27.3666664707992,183.0040234375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Alim_Dim_TypeAdmission.Paths[Sortie de recherche avec correspondance]"
+          TopLeft="458.366646541821,376.43333104319">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="86.8666653007276,43.53333315856"
+              Start="0,0"
+              End="86.8666653007276,36.03333315856">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,13.7338240596834" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,13.7338240596834"
+                    Point2="0,17.7338240596834"
+                    Point3="4,17.7338240596834" />
+                  <mssgle:LineSegment
+                    End="82.8666653007276,17.7338240596834" />
+                  <mssgle:CubicBezierSegment
+                    Point1="82.8666653007276,17.7338240596834"
+                    Point2="86.8666653007276,17.7338240596834"
+                    Point3="86.8666653007276,21.7338240596834" />
+                  <mssgle:LineSegment
+                    End="86.8666653007276,36.03333315856" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-48.2436790683862,22.7338240596834,183.3540234375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Alim_Dim_TypeAdmission.Paths[Sortie de conversion de données]"
+          TopLeft="438.449984769772,303.699999258717">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,31.1333317844735"
+              Start="0,0"
+              End="0,23.6333317844735">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,23.6333317844735" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Alim_Dim_TypeAdmission.Paths[Sortie de colonne dérivée]"
+          TopLeft="431.599982652565,142.099999547998">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,40.3999996383985"
+              Start="0,0"
+              End="0,32.8999996383985">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,32.8999996383985" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Alim_Dim_TypeAdmission\Recherche">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:boolean">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string">[dbo].[Dim_TypeAdmission]</Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:int">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Alim_Dim_TypeAdmission\Source OLE DB">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Alim_Dim_TypeAdmission\Destination OLE DB">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

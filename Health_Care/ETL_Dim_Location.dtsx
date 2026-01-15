@@ -1,0 +1,1401 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="11/22/2025 12:46:44 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="SANA"
+  DTS:CreatorName="SANA\eree"
+  DTS:DTSID="{EEAAAC0E-9C9B-4BB5-8F1A-3399BC79C3ED}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="16.0.5685.2"
+  DTS:LocaleID="8192"
+  DTS:ObjectName="ETL_Dim_Location"
+  DTS:PackageType="5"
+  DTS:VersionBuild="17"
+  DTS:VersionGUID="{2741C4C0-43DE-43D0-A229-77355878AEDA}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[SANA\SQLEXPRESS01.DW_HealthCare]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{9C49F5E0-4F1C-4378-AA09-A89E33E69593}"
+      DTS:ObjectName="SANA\SQLEXPRESS01.DW_HealthCare">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=SANA\SQLEXPRESS01;Initial Catalog=DW_HealthCare;Provider=SQLOLEDB.1;Integrated Security=SSPI;Application Name=SSIS-ETL_Dim_Location-{9C49F5E0-4F1C-4378-AA09-A89E33E69593}SANA\SQLEXPRESS01.DW_HealthCare;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[SANA\SQLEXPRESS01.HealthCare_SA;]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{C1F027E8-28A7-41A4-B7DC-378CCF21AAB9}"
+      DTS:ObjectName="SANA\SQLEXPRESS01.HealthCare_SA;">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=SANA\SQLEXPRESS01;Initial Catalog=&quot;HealthCare_SA;&quot;;Provider=SQLOLEDB.1;Integrated Security=SSPI;Application Name=&quot;SSIS-ETL_Dim_Location-{C1F027E8-28A7-41A4-B7DC-378CCF21AAB9}SANA\SQLEXPRESS01.HealthCare_SA;&quot;;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Alim_Dim_Location"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Tâche de flux de données"
+      DTS:DTSID="{9BF56AD7-67E6-4144-BA40-DA397337E737}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Alim_Dim_Location"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Alim_Dim_Location\Colonne dérivée"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Colonne dérivée;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Tous droits réservés; http://www.microsoft.com/sql/support;0"
+              description="Crée de nouvelles valeurs de colonne en appliquant des expressions aux colonnes d'entrée de transformation. Créez de nouvelles colonnes ou remplacez celles qui existent déjà. Par exemple, concaténez les valeurs de la colonne 'prénom' et de la colonne 'nom' pour créer une colonne 'nom complet'."
+              name="Colonne dérivée"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Alim_Dim_Location\Colonne dérivée.Inputs[Entrée de colonne dérivée]"
+                  description="Entrée de la transformation de colonnes dérivées"
+                  name="Entrée de colonne dérivée">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Alim_Dim_Location\Colonne dérivée.Inputs[Entrée de colonne dérivée].Columns[admission_location]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="150"
+                      cachedName="admission_location"
+                      lineageId="Package\Alim_Dim_Location\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[admission_location]" />
+                    <inputColumn
+                      refId="Package\Alim_Dim_Location\Colonne dérivée.Inputs[Entrée de colonne dérivée].Columns[discharge_location]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="150"
+                      cachedName="discharge_location"
+                      lineageId="Package\Alim_Dim_Location\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[discharge_location]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Alim_Dim_Location\Colonne dérivée.Outputs[Sortie de colonne dérivée]"
+                  description="Sortie par défaut de la transformation de colonnes dérivées"
+                  exclusionGroup="1"
+                  name="Sortie de colonne dérivée"
+                  synchronousInputId="Package\Alim_Dim_Location\Colonne dérivée.Inputs[Entrée de colonne dérivée]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Alim_Dim_Location\Colonne dérivée.Outputs[Sortie de colonne dérivée].Columns[service_category]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Calcul"
+                      errorRowDisposition="FailComponent"
+                      length="10"
+                      lineageId="Package\Alim_Dim_Location\Colonne dérivée.Outputs[Sortie de colonne dérivée].Columns[service_category]"
+                      name="service_category"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Expression de colonne dérivée"
+                          name="Expression">(DT_WSTR,100)#{Package\Alim_Dim_Location\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[admission_location]} == "EMERGENCY ROOM ADMIT" ? "Emergency" : (#{Package\Alim_Dim_Location\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[admission_location]} == "CLINIC REFERRAL/PREMATURE") ? "Outpatient" : (#{Package\Alim_Dim_Location\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[admission_location]} == "TRANSFER FROM HOSP/EXTRAM") ? "Transfer" : (#{Package\Alim_Dim_Location\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[discharge_location]} == "HOME HEALTH CARE") ? "Post-Acute" : (#{Package\Alim_Dim_Location\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[discharge_location]} == "SNF") ? "Post-Acute" : (#{Package\Alim_Dim_Location\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[discharge_location]} == "REHAB/DISTINCT PART HOSP") ? "Post-Acute" : "Other"</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Expression claire de colonne dérivée"
+                          expressionType="Notify"
+                          name="FriendlyExpression">(DT_WSTR,100)admission_location == "EMERGENCY ROOM ADMIT" ? "Emergency" : (admission_location == "CLINIC REFERRAL/PREMATURE") ? "Outpatient" : (admission_location == "TRANSFER FROM HOSP/EXTRAM") ? "Transfer" : (discharge_location == "HOME HEALTH CARE") ? "Post-Acute" : (discharge_location == "SNF") ? "Post-Acute" : (discharge_location == "REHAB/DISTINCT PART HOSP") ? "Post-Acute" : "Other"</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Alim_Dim_Location\Colonne dérivée.Outputs[Sortie d'erreur de colonne dérivée]"
+                  description="Sortie d'erreur de la transformation de colonnes dérivées"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Sortie d'erreur de colonne dérivée"
+                  synchronousInputId="Package\Alim_Dim_Location\Colonne dérivée.Inputs[Entrée de colonne dérivée]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Alim_Dim_Location\Colonne dérivée.Outputs[Sortie d'erreur de colonne dérivée].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Alim_Dim_Location\Colonne dérivée.Outputs[Sortie d'erreur de colonne dérivée].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Alim_Dim_Location\Colonne dérivée.Outputs[Sortie d'erreur de colonne dérivée].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Alim_Dim_Location\Colonne dérivée.Outputs[Sortie d'erreur de colonne dérivée].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Alim_Dim_Location\Commande OLE DB"
+              componentClassID="Microsoft.OLEDBCommand"
+              contactInfo="Commande OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Tous droits réservés; http://www.microsoft.com/sql/support;2"
+              description="Exécute une instruction SQL pour chaque ligne d'un flux de données. Par exemple, appelez une procédure stockée 'nouvelle configuration d'employé' pour chaque ligne de la table 'nouveaux employés'. Remarque : l'exécution d'une instruction SQL pour chaque ligne d'un flux de données volumineux peut prendre beaucoup de temps."
+              name="Commande OLE DB"
+              usesDispositions="true"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Nombre de secondes avant l'expiration d'une commande.  Une valeur égale à 0 indique un délai d'expiration infini."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Commande SQL à exécuter."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">UPDATE [dbo].[Dim_Location]
+   SET
+      [discharge_location] = ?
+      ,[service_category] = ?
+ WHERE [admission_location] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie la page de codes de la colonne à utiliser lorsque les informations de page de codes ne sont pas disponibles à partir de la source de données."
+                  name="DefaultCodePage">1252</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Alim_Dim_Location\Commande OLE DB.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[SANA\SQLEXPRESS01.DW_HealthCare]"
+                  connectionManagerRefId="Package.ConnectionManagers[SANA\SQLEXPRESS01.DW_HealthCare]"
+                  description="Connexion OLE DB en cours d'exécution utilisée pour accéder à la base de données."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Alim_Dim_Location\Commande OLE DB.Inputs[Entrée de commande OLE DB]"
+                  errorOrTruncationOperation="Exécution de commande"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="Entrée de commande OLE DB">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Alim_Dim_Location\Commande OLE DB.Inputs[Entrée de commande OLE DB].Columns[discharge_location]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="150"
+                      cachedName="discharge_location"
+                      cachedSortKeyPosition="2"
+                      externalMetadataColumnId="Package\Alim_Dim_Location\Commande OLE DB.Inputs[Entrée de commande OLE DB].ExternalColumns[Param_0]"
+                      lineageId="Package\Alim_Dim_Location\Trier.Outputs[Sortie de tri].Columns[discharge_location]" />
+                    <inputColumn
+                      refId="Package\Alim_Dim_Location\Commande OLE DB.Inputs[Entrée de commande OLE DB].Columns[Copy of service_category]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="10"
+                      cachedName="Copy of service_category"
+                      externalMetadataColumnId="Package\Alim_Dim_Location\Commande OLE DB.Inputs[Entrée de commande OLE DB].ExternalColumns[Param_1]"
+                      lineageId="Package\Alim_Dim_Location\Conversion de données.Outputs[Sortie de conversion de données].Columns[Copy of service_category]" />
+                    <inputColumn
+                      refId="Package\Alim_Dim_Location\Commande OLE DB.Inputs[Entrée de commande OLE DB].Columns[admission_location]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="150"
+                      cachedName="admission_location"
+                      cachedSortKeyPosition="1"
+                      externalMetadataColumnId="Package\Alim_Dim_Location\Commande OLE DB.Inputs[Entrée de commande OLE DB].ExternalColumns[Param_2]"
+                      lineageId="Package\Alim_Dim_Location\Trier.Outputs[Sortie de tri].Columns[admission_location]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Alim_Dim_Location\Commande OLE DB.Inputs[Entrée de commande OLE DB].ExternalColumns[Param_0]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="Param_0">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Informations de paramètre.  Correspond aux valeurs DBPARAMFLAGSENUM OLE DB."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Alim_Dim_Location\Commande OLE DB.Inputs[Entrée de commande OLE DB].ExternalColumns[Param_1]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="Param_1">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Informations de paramètre.  Correspond aux valeurs DBPARAMFLAGSENUM OLE DB."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Alim_Dim_Location\Commande OLE DB.Inputs[Entrée de commande OLE DB].ExternalColumns[Param_2]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="Param_2">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Informations de paramètre.  Correspond aux valeurs DBPARAMFLAGSENUM OLE DB."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Alim_Dim_Location\Commande OLE DB.Outputs[Sortie de commande OLE DB]"
+                  exclusionGroup="1"
+                  name="Sortie de commande OLE DB"
+                  synchronousInputId="Package\Alim_Dim_Location\Commande OLE DB.Inputs[Entrée de commande OLE DB]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Alim_Dim_Location\Commande OLE DB.Outputs[Sortie d'erreur de commande OLE DB]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Sortie d'erreur de commande OLE DB"
+                  synchronousInputId="Package\Alim_Dim_Location\Commande OLE DB.Inputs[Entrée de commande OLE DB]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Alim_Dim_Location\Commande OLE DB.Outputs[Sortie d'erreur de commande OLE DB].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Alim_Dim_Location\Commande OLE DB.Outputs[Sortie d'erreur de commande OLE DB].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Alim_Dim_Location\Commande OLE DB.Outputs[Sortie d'erreur de commande OLE DB].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Alim_Dim_Location\Commande OLE DB.Outputs[Sortie d'erreur de commande OLE DB].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Alim_Dim_Location\Conversion de données"
+              componentClassID="Microsoft.DataConvert"
+              contactInfo="Conversion de données;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Tous droits réservés; http://www.microsoft.com/sql/support;0"
+              description="Conversion de données"
+              name="Conversion de données"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Alim_Dim_Location\Conversion de données.Inputs[Entrée de conversion de données]"
+                  name="Entrée de conversion de données">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Alim_Dim_Location\Conversion de données.Inputs[Entrée de conversion de données].Columns[service_category]"
+                      cachedDataType="wstr"
+                      cachedLength="10"
+                      cachedName="service_category"
+                      lineageId="Package\Alim_Dim_Location\Trier.Outputs[Sortie de tri].Columns[service_category]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Alim_Dim_Location\Conversion de données.Outputs[Sortie de conversion de données]"
+                  exclusionGroup="1"
+                  name="Sortie de conversion de données"
+                  synchronousInputId="Package\Alim_Dim_Location\Conversion de données.Inputs[Entrée de conversion de données]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Alim_Dim_Location\Conversion de données.Outputs[Sortie de conversion de données].Columns[Copy of service_category]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="10"
+                      lineageId="Package\Alim_Dim_Location\Conversion de données.Outputs[Sortie de conversion de données].Columns[Copy of service_category]"
+                      name="Copy of service_category"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Spécifie la colonne d'entrée utilisée comme source de données pour la conversion."
+                          name="SourceInputColumnLineageID">#{Package\Alim_Dim_Location\Trier.Outputs[Sortie de tri].Columns[service_category]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indique si la colonne utilise les routines d'analyse les plus rapides, avec des paramètres régionaux neutres."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Alim_Dim_Location\Conversion de données.Outputs[Sortie d'erreur de conversion de données]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Sortie d'erreur de conversion de données"
+                  synchronousInputId="Package\Alim_Dim_Location\Conversion de données.Inputs[Entrée de conversion de données]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Alim_Dim_Location\Conversion de données.Outputs[Sortie d'erreur de conversion de données].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Alim_Dim_Location\Conversion de données.Outputs[Sortie d'erreur de conversion de données].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Alim_Dim_Location\Conversion de données.Outputs[Sortie d'erreur de conversion de données].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Alim_Dim_Location\Conversion de données.Outputs[Sortie d'erreur de conversion de données].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Alim_Dim_Location\Destination OLE DB"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="Destination OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Tous droits réservés; http://www.microsoft.com/sql/support;4"
+              description="Destination OLE DB"
+              name="Destination OLE DB"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Nombre de secondes avant l'expiration d'une commande.  Une valeur égale à 0 indique un délai d'expiration infini."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Spécifie le nom de l'objet de base de données utilisé pour ouvrir un ensemble de lignes."
+                  name="OpenRowset">[dbo].[Dim_Location]</property>
+                <property
+                  dataType="System.String"
+                  description="Spécifie la variable contenant le nom de l'objet de base de données utilisé pour ouvrir un ensemble de lignes."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="Commande SQL à exécuter."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie la page de codes de la colonne à utiliser lorsque les informations de page de codes ne sont pas disponibles à partir de la source de données."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Force l'utilisation de la valeur de propriété DefaultCodePage lors de la description des données caractères."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie le mode utilisé pour accéder à la base de données."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indique si les valeurs fournies pour les colonnes d'identité seront copiées à la destination. Si la valeur est définie à False, les valeurs des colonnes d'identité seront générées automatiquement à la destination. Ne s'applique que si le chargement rapide est activé."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indique si les colonnes contenant la valeur NULL auront cette valeur NULL copiée à la destination. Si la valeur est définie à False, les colonnes contenant la valeur NULL auront leurs valeurs par défaut insérées à la destination. Ne s'applique que si le chargement rapide est activé."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Spécifie les options à utiliser avec le chargement rapide.  Ne s'applique que si le chargement rapide est activé."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie quand les validations sont émises pendant l'insertion des données.  Une valeur égale à 0 spécifie qu'une validation sera émise à la fin de l'insertion des données.  Ne s'applique que si le chargement rapide est activé."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Alim_Dim_Location\Destination OLE DB.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[SANA\SQLEXPRESS01.DW_HealthCare]"
+                  connectionManagerRefId="Package.ConnectionManagers[SANA\SQLEXPRESS01.DW_HealthCare]"
+                  description="Connexion OLE DB en cours d'exécution utilisée pour accéder à la base de données."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Alim_Dim_Location\Destination OLE DB.Inputs[Entrée de destination OLE DB]"
+                  errorOrTruncationOperation="Insérer"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="Entrée de destination OLE DB">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Alim_Dim_Location\Destination OLE DB.Inputs[Entrée de destination OLE DB].Columns[admission_location]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="150"
+                      cachedName="admission_location"
+                      cachedSortKeyPosition="1"
+                      externalMetadataColumnId="Package\Alim_Dim_Location\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[admission_location]"
+                      lineageId="Package\Alim_Dim_Location\Trier.Outputs[Sortie de tri].Columns[admission_location]" />
+                    <inputColumn
+                      refId="Package\Alim_Dim_Location\Destination OLE DB.Inputs[Entrée de destination OLE DB].Columns[discharge_location]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="150"
+                      cachedName="discharge_location"
+                      cachedSortKeyPosition="2"
+                      externalMetadataColumnId="Package\Alim_Dim_Location\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[discharge_location]"
+                      lineageId="Package\Alim_Dim_Location\Trier.Outputs[Sortie de tri].Columns[discharge_location]" />
+                    <inputColumn
+                      refId="Package\Alim_Dim_Location\Destination OLE DB.Inputs[Entrée de destination OLE DB].Columns[Copy of service_category]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="10"
+                      cachedName="Copy of service_category"
+                      externalMetadataColumnId="Package\Alim_Dim_Location\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[service_category]"
+                      lineageId="Package\Alim_Dim_Location\Conversion de données.Outputs[Sortie de conversion de données].Columns[Copy of service_category]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Alim_Dim_Location\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[Location_PK]"
+                      dataType="i4"
+                      name="Location_PK" />
+                    <externalMetadataColumn
+                      refId="Package\Alim_Dim_Location\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[admission_location]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="admission_location" />
+                    <externalMetadataColumn
+                      refId="Package\Alim_Dim_Location\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[discharge_location]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="discharge_location" />
+                    <externalMetadataColumn
+                      refId="Package\Alim_Dim_Location\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[service_category]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="service_category" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Alim_Dim_Location\Destination OLE DB.Outputs[Sortie d'erreur de destination OLE DB]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Sortie d'erreur de destination OLE DB"
+                  synchronousInputId="Package\Alim_Dim_Location\Destination OLE DB.Inputs[Entrée de destination OLE DB]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Alim_Dim_Location\Destination OLE DB.Outputs[Sortie d'erreur de destination OLE DB].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Alim_Dim_Location\Destination OLE DB.Outputs[Sortie d'erreur de destination OLE DB].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Alim_Dim_Location\Destination OLE DB.Outputs[Sortie d'erreur de destination OLE DB].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Alim_Dim_Location\Destination OLE DB.Outputs[Sortie d'erreur de destination OLE DB].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Alim_Dim_Location\Recherche"
+              componentClassID="Microsoft.Lookup"
+              contactInfo="Recherche;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Tous droits réservés; http://www.microsoft.com/sql/support;6"
+              description="Joint des colonnes supplémentaires au flux de données en recherchant des valeurs dans une table. Par exemple, joignez la colonne 'id employé' à la table des employés afin d'obtenir la 'date d'embauche' et le 'nom de l'employé'. Nous recommandons cette transformation lorsque la table de recherche peut être stockée en mémoire."
+              name="Recherche"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Spécifie l'instruction SQL qui génère la table de correspondance."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from [dbo].[Dim_Location]</property>
+                <property
+                  dataType="System.String"
+                  description="Spécifie une instruction SQL qui utilise des paramètres pour générer la table de correspondance."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (select * from [dbo].[Dim_Location]) [refTable]
+where [refTable].[admission_location] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie le type de connexion utilisé pour accéder au dataset de référence."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie le type de cache de la table de correspondance."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie comment la transformation de recherche gère les lignes sans entrées correspondantes dans le jeu de données de référence."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie le pourcentage du cache alloué aux lignes sans entrées correspondantes dans le dataset de référence."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Utilisation maximale de la mémoire pour le cache de référence sur une plateforme 32 bits."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Utilisation maximale de la mémoire pour le cache de référence sur une plateforme 64 bits."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indique si les métadonnées sont à référencer en format XML."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="Location_PK" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="admission_location" dataType="DT_STR" length="100" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="discharge_location" dataType="DT_STR" length="100" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="service_category" dataType="DT_STR" length="100" precision="0" scale="0" codePage="1252"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Spécifie la liste d'identificateurs de traçabilité se mappant aux paramètres utilisés dans la propriété SQLCommand par l'instruction SQL. Les entrées dans la liste sont séparées par des points-virgules."
+                  name="ParameterMap">#{Package\Alim_Dim_Location\Trier.Outputs[Sortie de tri].Columns[admission_location]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie la page de codes de la colonne à utiliser lorsque les informations de page de codes ne sont pas disponibles à partir de la source de données."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Détermine si les clés dupliquées dans les données de référence doivent être traitées en tant qu'erreurs lorsque le mode Cache complet est utilisé."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Alim_Dim_Location\Recherche.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[SANA\SQLEXPRESS01.DW_HealthCare]"
+                  connectionManagerRefId="Package.ConnectionManagers[SANA\SQLEXPRESS01.DW_HealthCare]"
+                  description="Gestionnaire de connexions utilisé pour accéder aux données de correspondance."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Alim_Dim_Location\Recherche.Inputs[Entrée de recherche]"
+                  name="Entrée de recherche">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Alim_Dim_Location\Recherche.Inputs[Entrée de recherche].Columns[admission_location]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="150"
+                      cachedName="admission_location"
+                      cachedSortKeyPosition="1"
+                      lineageId="Package\Alim_Dim_Location\Trier.Outputs[Sortie de tri].Columns[admission_location]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Spécifie la colonne de la table de référence sur laquelle une colonne se lie."
+                          name="JoinToReferenceColumn">admission_location</property>
+                        <property
+                          dataType="System.Null"
+                          description="Spécifie la colonne de la table de référence à partir de laquelle une colonne est copiée."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Alim_Dim_Location\Recherche.Outputs[Sortie de recherche avec correspondance]"
+                  errorOrTruncationOperation="Recherche"
+                  exclusionGroup="1"
+                  name="Sortie de recherche avec correspondance"
+                  synchronousInputId="Package\Alim_Dim_Location\Recherche.Inputs[Entrée de recherche]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Alim_Dim_Location\Recherche.Outputs[Sortie de recherche avec correspondance].Columns[Location_PK]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Copie de colonnes"
+                      lineageId="Package\Alim_Dim_Location\Recherche.Outputs[Sortie de recherche avec correspondance].Columns[Location_PK]"
+                      name="Location_PK"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Spécifie la colonne de la table de référence à partir de laquelle une colonne est copiée."
+                          name="CopyFromReferenceColumn">Location_PK</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Alim_Dim_Location\Recherche.Outputs[Sortie de recherche avec correspondance].Columns[admission_location]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Copie de colonnes"
+                      length="100"
+                      lineageId="Package\Alim_Dim_Location\Recherche.Outputs[Sortie de recherche avec correspondance].Columns[admission_location]"
+                      name="admission_location"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Spécifie la colonne de la table de référence à partir de laquelle une colonne est copiée."
+                          name="CopyFromReferenceColumn">admission_location</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Alim_Dim_Location\Recherche.Outputs[Sortie de recherche avec correspondance].Columns[discharge_location]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Copie de colonnes"
+                      length="100"
+                      lineageId="Package\Alim_Dim_Location\Recherche.Outputs[Sortie de recherche avec correspondance].Columns[discharge_location]"
+                      name="discharge_location"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Spécifie la colonne de la table de référence à partir de laquelle une colonne est copiée."
+                          name="CopyFromReferenceColumn">discharge_location</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Alim_Dim_Location\Recherche.Outputs[Sortie de recherche avec correspondance].Columns[service_category]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Copie de colonnes"
+                      length="100"
+                      lineageId="Package\Alim_Dim_Location\Recherche.Outputs[Sortie de recherche avec correspondance].Columns[service_category]"
+                      name="service_category"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Spécifie la colonne de la table de référence à partir de laquelle une colonne est copiée."
+                          name="CopyFromReferenceColumn">service_category</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Alim_Dim_Location\Recherche.Outputs[Sortie de recherche sans correspondance]"
+                  description="Sortie de recherche gérant les lignes sans entrées correspondantes dans le dataset de référence. Utilisez cette sortie lorsque la propriété NoMatchBehavior a la valeur « Envoyez les lignes sans entrées correspondantes dans la sortie sans correspondance »."
+                  exclusionGroup="1"
+                  name="Sortie de recherche sans correspondance"
+                  synchronousInputId="Package\Alim_Dim_Location\Recherche.Inputs[Entrée de recherche]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Alim_Dim_Location\Recherche.Outputs[Sortie d'erreur de recherche]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Sortie d'erreur de recherche"
+                  synchronousInputId="Package\Alim_Dim_Location\Recherche.Inputs[Entrée de recherche]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Alim_Dim_Location\Recherche.Outputs[Sortie d'erreur de recherche].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Alim_Dim_Location\Recherche.Outputs[Sortie d'erreur de recherche].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Alim_Dim_Location\Recherche.Outputs[Sortie d'erreur de recherche].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Alim_Dim_Location\Recherche.Outputs[Sortie d'erreur de recherche].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Alim_Dim_Location\Source OLE DB"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="Source OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Tous droits réservés; http://www.microsoft.com/sql/support;7"
+              description="Source OLE DB"
+              name="Source OLE DB"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Nombre de secondes avant l'expiration d'une commande.  Une valeur égale à 0 indique un délai d'expiration infini."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Spécifie le nom de l'objet de base de données utilisé pour ouvrir un ensemble de lignes."
+                  name="OpenRowset">[dbo].[ADMISSIONS_SA]</property>
+                <property
+                  dataType="System.String"
+                  description="Spécifie la variable contenant le nom de l'objet de base de données utilisé pour ouvrir un ensemble de lignes."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="Commande SQL à exécuter."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="Variable contenant la commande SQL à exécuter."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie la page de codes de la colonne à utiliser lorsque les informations de page de codes ne sont pas disponibles à partir de la source de données."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Force l'utilisation de la valeur de propriété DefaultCodePage lors de la description des données caractères."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie le mode utilisé pour accéder à la base de données."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="Mappages entre les paramètres de la commande SQL et les variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Alim_Dim_Location\Source OLE DB.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[SANA\SQLEXPRESS01.HealthCare_SA;]"
+                  connectionManagerRefId="Package.ConnectionManagers[SANA\SQLEXPRESS01.HealthCare_SA;]"
+                  description="Connexion OLE DB en cours d'exécution utilisée pour accéder à la base de données."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Alim_Dim_Location\Source OLE DB.Outputs[Sortie de source OLE DB]"
+                  name="Sortie de source OLE DB">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Alim_Dim_Location\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[admission_location]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Alim_Dim_Location\Source OLE DB.Outputs[Sortie de source OLE DB].ExternalColumns[admission_location]"
+                      length="150"
+                      lineageId="Package\Alim_Dim_Location\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[admission_location]"
+                      name="admission_location"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Alim_Dim_Location\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[discharge_location]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Alim_Dim_Location\Source OLE DB.Outputs[Sortie de source OLE DB].ExternalColumns[discharge_location]"
+                      length="150"
+                      lineageId="Package\Alim_Dim_Location\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[discharge_location]"
+                      name="discharge_location"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Alim_Dim_Location\Source OLE DB.Outputs[Sortie de source OLE DB].ExternalColumns[row_id]"
+                      dataType="i4"
+                      name="row_id" />
+                    <externalMetadataColumn
+                      refId="Package\Alim_Dim_Location\Source OLE DB.Outputs[Sortie de source OLE DB].ExternalColumns[subject_id]"
+                      dataType="i4"
+                      name="subject_id" />
+                    <externalMetadataColumn
+                      refId="Package\Alim_Dim_Location\Source OLE DB.Outputs[Sortie de source OLE DB].ExternalColumns[hadm_id]"
+                      dataType="i4"
+                      name="hadm_id" />
+                    <externalMetadataColumn
+                      refId="Package\Alim_Dim_Location\Source OLE DB.Outputs[Sortie de source OLE DB].ExternalColumns[admittime]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="admittime" />
+                    <externalMetadataColumn
+                      refId="Package\Alim_Dim_Location\Source OLE DB.Outputs[Sortie de source OLE DB].ExternalColumns[dischtime]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="dischtime" />
+                    <externalMetadataColumn
+                      refId="Package\Alim_Dim_Location\Source OLE DB.Outputs[Sortie de source OLE DB].ExternalColumns[deathtime]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="deathtime" />
+                    <externalMetadataColumn
+                      refId="Package\Alim_Dim_Location\Source OLE DB.Outputs[Sortie de source OLE DB].ExternalColumns[admission_type]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="admission_type" />
+                    <externalMetadataColumn
+                      refId="Package\Alim_Dim_Location\Source OLE DB.Outputs[Sortie de source OLE DB].ExternalColumns[admission_location]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="admission_location" />
+                    <externalMetadataColumn
+                      refId="Package\Alim_Dim_Location\Source OLE DB.Outputs[Sortie de source OLE DB].ExternalColumns[discharge_location]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="discharge_location" />
+                    <externalMetadataColumn
+                      refId="Package\Alim_Dim_Location\Source OLE DB.Outputs[Sortie de source OLE DB].ExternalColumns[insurance]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="insurance" />
+                    <externalMetadataColumn
+                      refId="Package\Alim_Dim_Location\Source OLE DB.Outputs[Sortie de source OLE DB].ExternalColumns[language]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      name="language" />
+                    <externalMetadataColumn
+                      refId="Package\Alim_Dim_Location\Source OLE DB.Outputs[Sortie de source OLE DB].ExternalColumns[religion]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="religion" />
+                    <externalMetadataColumn
+                      refId="Package\Alim_Dim_Location\Source OLE DB.Outputs[Sortie de source OLE DB].ExternalColumns[marital_status]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="marital_status" />
+                    <externalMetadataColumn
+                      refId="Package\Alim_Dim_Location\Source OLE DB.Outputs[Sortie de source OLE DB].ExternalColumns[ethnicity]"
+                      codePage="1252"
+                      dataType="str"
+                      length="200"
+                      name="ethnicity" />
+                    <externalMetadataColumn
+                      refId="Package\Alim_Dim_Location\Source OLE DB.Outputs[Sortie de source OLE DB].ExternalColumns[edregtime]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="edregtime" />
+                    <externalMetadataColumn
+                      refId="Package\Alim_Dim_Location\Source OLE DB.Outputs[Sortie de source OLE DB].ExternalColumns[edouttime]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="edouttime" />
+                    <externalMetadataColumn
+                      refId="Package\Alim_Dim_Location\Source OLE DB.Outputs[Sortie de source OLE DB].ExternalColumns[diagnosis]"
+                      codePage="1252"
+                      dataType="str"
+                      length="150"
+                      name="diagnosis" />
+                    <externalMetadataColumn
+                      refId="Package\Alim_Dim_Location\Source OLE DB.Outputs[Sortie de source OLE DB].ExternalColumns[hospital_expire_flag]"
+                      dataType="bool"
+                      name="hospital_expire_flag" />
+                    <externalMetadataColumn
+                      refId="Package\Alim_Dim_Location\Source OLE DB.Outputs[Sortie de source OLE DB].ExternalColumns[has_chartevents_data]"
+                      dataType="bool"
+                      name="has_chartevents_data" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Alim_Dim_Location\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB]"
+                  isErrorOut="true"
+                  name="Sortie d'erreur de source OLE DB">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Alim_Dim_Location\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB].Columns[admission_location]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      lineageId="Package\Alim_Dim_Location\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB].Columns[admission_location]"
+                      name="admission_location" />
+                    <outputColumn
+                      refId="Package\Alim_Dim_Location\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB].Columns[discharge_location]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      lineageId="Package\Alim_Dim_Location\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB].Columns[discharge_location]"
+                      name="discharge_location" />
+                    <outputColumn
+                      refId="Package\Alim_Dim_Location\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Alim_Dim_Location\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Alim_Dim_Location\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Alim_Dim_Location\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Alim_Dim_Location\Trier"
+              componentClassID="Microsoft.Sort"
+              contactInfo="Trier;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Tous droits réservés; http://www.microsoft.com/sql/support;1"
+              description="Trie les données d'entrée en ordre croissant ou décroissant lorsque le tri ne peut pas être effectué à la source. Par exemple, triez les données de vente par 'id de client' avant leur enregistrement dans un fichier plat et leur diffusion dans un autre service. Remarque : nous ne recommandons pas cette transformation dans le cas de flux de données volumineux."
+              name="Trier"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Indique si la transformation de tri supprime les lignes comportant des valeurs de tri en double."
+                  name="EliminateDuplicates">true</property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie le nombre maximal de threads à utiliser pour le tri."
+                  expressionType="Notify"
+                  name="MaximumThreads">-1</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\Alim_Dim_Location\Trier.Inputs[Entrée de tri]"
+                  name="Entrée de tri">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Alim_Dim_Location\Trier.Inputs[Entrée de tri].Columns[admission_location]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="150"
+                      cachedName="admission_location"
+                      lineageId="Package\Alim_Dim_Location\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[admission_location]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Spécifie les options de comparaison pour les données caractères."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Spécifie l'ordre de tri de la colonne."
+                          name="NewSortKeyPosition">1</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Alim_Dim_Location\Trier.Inputs[Entrée de tri].Columns[discharge_location]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="150"
+                      cachedName="discharge_location"
+                      lineageId="Package\Alim_Dim_Location\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[discharge_location]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Spécifie les options de comparaison pour les données caractères."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Spécifie l'ordre de tri de la colonne."
+                          name="NewSortKeyPosition">2</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Alim_Dim_Location\Trier.Inputs[Entrée de tri].Columns[service_category]"
+                      cachedDataType="wstr"
+                      cachedLength="10"
+                      cachedName="service_category"
+                      lineageId="Package\Alim_Dim_Location\Colonne dérivée.Outputs[Sortie de colonne dérivée].Columns[service_category]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Spécifie les options de comparaison pour les données caractères."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Spécifie l'ordre de tri de la colonne."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Alim_Dim_Location\Trier.Outputs[Sortie de tri]"
+                  isSorted="true"
+                  name="Sortie de tri">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Alim_Dim_Location\Trier.Outputs[Sortie de tri].Columns[admission_location]"
+                      codePage="1252"
+                      dataType="str"
+                      length="150"
+                      lineageId="Package\Alim_Dim_Location\Trier.Outputs[Sortie de tri].Columns[admission_location]"
+                      name="admission_location"
+                      sortKeyPosition="1">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Spécifie l'identificateur de traçabilité de la colonne d'entrée associé à cette colonne de sortie."
+                          name="SortColumnId">#{Package\Alim_Dim_Location\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[admission_location]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Alim_Dim_Location\Trier.Outputs[Sortie de tri].Columns[discharge_location]"
+                      codePage="1252"
+                      dataType="str"
+                      length="150"
+                      lineageId="Package\Alim_Dim_Location\Trier.Outputs[Sortie de tri].Columns[discharge_location]"
+                      name="discharge_location"
+                      sortKeyPosition="2">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Spécifie l'identificateur de traçabilité de la colonne d'entrée associé à cette colonne de sortie."
+                          name="SortColumnId">#{Package\Alim_Dim_Location\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[discharge_location]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Alim_Dim_Location\Trier.Outputs[Sortie de tri].Columns[service_category]"
+                      dataType="wstr"
+                      length="10"
+                      lineageId="Package\Alim_Dim_Location\Trier.Outputs[Sortie de tri].Columns[service_category]"
+                      name="service_category">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Spécifie l'identificateur de traçabilité de la colonne d'entrée associé à cette colonne de sortie."
+                          name="SortColumnId">#{Package\Alim_Dim_Location\Colonne dérivée.Outputs[Sortie de colonne dérivée].Columns[service_category]}</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Alim_Dim_Location.Paths[Sortie de colonne dérivée]"
+              endId="Package\Alim_Dim_Location\Trier.Inputs[Entrée de tri]"
+              name="Sortie de colonne dérivée"
+              startId="Package\Alim_Dim_Location\Colonne dérivée.Outputs[Sortie de colonne dérivée]" />
+            <path
+              refId="Package\Alim_Dim_Location.Paths[Sortie de conversion de données]"
+              endId="Package\Alim_Dim_Location\Recherche.Inputs[Entrée de recherche]"
+              name="Sortie de conversion de données"
+              startId="Package\Alim_Dim_Location\Conversion de données.Outputs[Sortie de conversion de données]" />
+            <path
+              refId="Package\Alim_Dim_Location.Paths[Sortie de recherche avec correspondance]"
+              endId="Package\Alim_Dim_Location\Commande OLE DB.Inputs[Entrée de commande OLE DB]"
+              name="Sortie de recherche avec correspondance"
+              startId="Package\Alim_Dim_Location\Recherche.Outputs[Sortie de recherche avec correspondance]" />
+            <path
+              refId="Package\Alim_Dim_Location.Paths[Sortie de recherche sans correspondance]"
+              endId="Package\Alim_Dim_Location\Destination OLE DB.Inputs[Entrée de destination OLE DB]"
+              name="Sortie de recherche sans correspondance"
+              startId="Package\Alim_Dim_Location\Recherche.Outputs[Sortie de recherche sans correspondance]" />
+            <path
+              refId="Package\Alim_Dim_Location.Paths[Sortie de source OLE DB]"
+              endId="Package\Alim_Dim_Location\Colonne dérivée.Inputs[Entrée de colonne dérivée]"
+              name="Sortie de source OLE DB"
+              startId="Package\Alim_Dim_Location\Source OLE DB.Outputs[Sortie de source OLE DB]" />
+            <path
+              refId="Package\Alim_Dim_Location.Paths[Sortie de tri]"
+              endId="Package\Alim_Dim_Location\Conversion de données.Inputs[Entrée de conversion de données]"
+              name="Sortie de tri"
+              startId="Package\Alim_Dim_Location\Trier.Outputs[Sortie de tri]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--Cette section CDATA contient des informations sur la disposition du package. Elle comprend des informations telles que les coordonnées (x,y), la largeur et la hauteur.-->
+<!--Si vous modifiez manuellement cette section et commettez une erreur, vous pouvez la supprimer. -->
+<!--Le package pourra toujours se charger normalement, mais les informations de disposition précédente seront perdues et le concepteur réorganisera automatiquement les éléments sur l'aire de conception.-->
+<Objects
+  Version="8">
+  <!--Chaque nœud ci-dessous contiendra des propriétés qui n'affectent pas le comportement d'exécution.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="168,41.6"
+          Id="Package\Alim_Dim_Location"
+          TopLeft="317.999982925754,181.433332109915" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Alim_Dim_Location">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="188,41.6"
+          Id="Package\Alim_Dim_Location\Conversion de données"
+          TopLeft="312.999993033707,226.233333050079" />
+        <NodeLayout
+          Size="128.8,41.6"
+          Id="Package\Alim_Dim_Location\Recherche"
+          TopLeft="338.833326594697,292.633332796958" />
+        <NodeLayout
+          Size="172.8,41.6"
+          Id="Package\Alim_Dim_Location\Commande OLE DB"
+          TopLeft="447.999990575016,385.566665901277" />
+        <NodeLayout
+          Size="152,41.6"
+          Id="Package\Alim_Dim_Location\Source OLE DB"
+          TopLeft="322.166649364764,7.23333332127993" />
+        <NodeLayout
+          Size="171.2,41.6"
+          Id="Package\Alim_Dim_Location\Destination OLE DB"
+          TopLeft="202.166669034295,385.899999023676" />
+        <NodeLayout
+          Size="100,41.6"
+          Id="Package\Alim_Dim_Location\Trier"
+          TopLeft="352.166651003891,159.966666009757" />
+        <NodeLayout
+          Size="154.4,41.6"
+          Id="Package\Alim_Dim_Location\Colonne dérivée"
+          TopLeft="326.333317442901,90.0999996203186" />
+        <EdgeLayout
+          Id="Package\Alim_Dim_Location.Paths[Sortie de tri]"
+          TopLeft="404.583322018799,201.566666009757">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,24.6666670403221"
+              Start="0,0"
+              End="0,17.1666670403221">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,17.1666670403221" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Alim_Dim_Location.Paths[Sortie de source OLE DB]"
+          TopLeft="400.849983403832,48.8333333212799">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,41.2666662990387"
+              Start="0,0"
+              End="0,33.7666662990387">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,33.7666662990387" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Alim_Dim_Location.Paths[Sortie de recherche sans correspondance]"
+          TopLeft="403.233326594697,334.233332796958">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-115.466657560402,51.6666662267182"
+              Start="0,0"
+              End="-115.466657560402,44.1666662267182">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,21.8333331133591" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,21.8333331133591"
+                    Point2="0,25.8333331133591"
+                    Point3="-4,25.8333331133591" />
+                  <mssgle:LineSegment
+                    End="-111.466657560402,25.8333331133591" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-111.466657560402,25.8333331133591"
+                    Point2="-115.466657560402,25.8333331133591"
+                    Point3="-115.466657560402,29.8333331133591" />
+                  <mssgle:LineSegment
+                    End="-115.466657560402,44.1666662267182" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-149.235340498951,30.8333331133591,183.0040234375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Alim_Dim_Location.Paths[Sortie de recherche avec correspondance]"
+          TopLeft="423.366659928031,334.233332796958">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="111.033330646985,51.3333331043191"
+              Start="0,0"
+              End="111.033330646985,43.8333331043191">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,16.9112473504711" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,16.9112473504711"
+                    Point2="0,20.9112473504711"
+                    Point3="4,20.9112473504711" />
+                  <mssgle:LineSegment
+                    End="107.033330646985,20.9112473504711" />
+                  <mssgle:CubicBezierSegment
+                    Point1="107.033330646985,20.9112473504711"
+                    Point2="111.033330646985,20.9112473504711"
+                    Point3="111.033330646985,24.9112473504711" />
+                  <mssgle:LineSegment
+                    End="111.033330646985,43.8333331043191" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-36.1603463952574,25.9112473504711,183.3540234375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Alim_Dim_Location.Paths[Sortie de conversion de données]"
+          TopLeft="405.116659814202,267.833333050079">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,24.7999997468788"
+              Start="0,0"
+              End="0,17.2999997468788">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,17.2999997468788" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Alim_Dim_Location.Paths[Sortie de colonne dérivée]"
+          TopLeft="402.849984223396,131.699999620319">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,28.2666663894382"
+              Start="0,0"
+              End="0,20.7666663894382">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,20.7666663894382" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Alim_Dim_Location\Recherche">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:boolean">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string">[dbo].[Dim_Location]</Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:int">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Alim_Dim_Location\Source OLE DB">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Alim_Dim_Location\Destination OLE DB">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
